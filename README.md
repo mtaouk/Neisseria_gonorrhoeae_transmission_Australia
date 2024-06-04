@@ -68,8 +68,11 @@ Bash script to make the alignments
 ### 10. Tree
 `iqtree -s stripped_alignment.fasta -B 1000 -T 40`
 
-#### 11. Timed tree
+### 11. Timed tree
 `/home/taouk/lsd-0.3beta-master/src/lsd -d dates.tsv -i 95gapsMP.tree -c`
+
+### 12. Determine threshold and adjust for timed between samples
+see cgMLST_threshold/Threshold.Rmd
 
 ## Snippy
 
