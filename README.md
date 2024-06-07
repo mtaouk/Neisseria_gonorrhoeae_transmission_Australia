@@ -75,7 +75,7 @@ cgMLST allele calling final results:
 
 
 ### 4. Transform allele calling spreadsheet to distance matrix
-`cgmlst-dists results/evaluate/cgMLST.tsv > pairwise_distances_0.95_cgMLST.txt` 
+`cgmlst-dists results/evaluate/cgMLST.tsv > cgMLST_matrix.txt` 
 
 ### 5. cgMLST alginment (only including 5,881 genomes)
 <a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/cgMLST/cgMLST_alignment_part1.r" title="R Script to preprocess the data">R Script to preprocess the data</a>
