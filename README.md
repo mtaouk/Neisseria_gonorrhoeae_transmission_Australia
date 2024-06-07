@@ -158,14 +158,7 @@ A pseudoalignment of all genomes was generated:
 
 Whole genome pseudoalignments were subset from the entire dataset for each of the previously defined cgMLST clusters with at least 5 isolates (including only the 3,714 *N. gonorrhoeae* genomes collected after 1st July 2019). The following shell script subsets the alignments: <a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/Timed_trees/split.sh" title="split.sh">split.sh</a>
 
-
-For each cluster alignment, ML phylogenetic trees were inferred using IQ-tree (v2.0.3), with the best-fitting nucleotide substitution model chosen based on the lowest BIC. Molecular dating of ancestral events was performed on the remaining ML trees, using the least-squares dating (LSD) software (0.3) with -r -c parameters and a rate of 4.5x10-6 substitutions per site as previously defined. The subsequent timed trees were used as input for a Bayesian hierarchical model. 
-
-`bash trees.sh`
-
-<a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/Timed_trees/trees.sh" title="trees.sh">trees.sh</a>
-
-<a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/Timed_trees/dates.sh" title="here">dates.sh</a>
+For each cluster alignment, ML phylogenetic trees were inferred using IQ-tree (v2.0.3), with the best-fitting nucleotide substitution model chosen based on the lowest BIC. Molecular dating of ancestral events was performed on the remaining ML trees, using the least-squares dating (LSD) software (0.3) with -r -c parameters and a rate of 4.5x10-6 substitutions per site as previously defined. The subsequent timed trees were used as input for a Bayesian hierarchical model. The following script makes the tree: <a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/Timed_trees/trees.sh" title="trees.sh">trees.sh</a> and requires <a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/Timed_trees/dates.sh" title="here">dates.sh</a> to run.
 
 ### 3. Bayesian hierarchical model 
 
