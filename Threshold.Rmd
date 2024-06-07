@@ -1,0 +1,276 @@
+---
+title: "cgMLST distance matrix"
+author: "Mona Taouk"
+output: html_document
+date: "2023-03-29"
+---
+
+# Libraries and load data
+
+```{r, warning=F}
+load("Threshold.RData")
+
+# Libraries
+library(ggtree)
+library(tidyverse)
+library(ggplot2)
+library(RColorBrewer)
+library(ggridges)
+library(reshape2)
+library(scales)
+library(patchwork)
+library(ape)
+```
+
+#### Set up matrix, melt, merge and add columns
+
+```{r, warning=F}
+
+# melt matrix keeping only top of pyramid
+cgMLST_melt = data.frame(ID1=rownames(cgMLST_matrix_all)[row(cgMLST_matrix_all)[upper.tri(cgMLST_matrix_all)]], ID2=colnames(cgMLST_matrix_all)[col(cgMLST_matrix_all)[upper.tri(cgMLST_matrix_all)]], dist=cgMLST_matrix_all[upper.tri(cgMLST_matrix_all)])
+
+# Merge cgMLST_melt with dataframe that tells us which IDs are the callibration isolates
+cgMLST_melt = cgMLST_melt %>% merge(intrapatient, by.x = "ID1", by.y = "AUSMDU", all.x = F, all.y = F) %>% merge(intrapatient, by.x = "ID2", by.y = "AUSMDU", all.x = F, all.y = F)
+
+# Check for NAs
+sum(is.na(cgMLST_melt))
+
+# Create a new column called "check" that indicates whether the Patient_no.x and Patient_no.y columns are the same or different
+cgMLST_melt$check = ifelse(cgMLST_melt$Patient_no.x == cgMLST_melt$Patient_no.y, "same", "diff")
+
+```
+
+#### make dataframes for between, within etc
+
+```{r, warning=F}
+
+between_patients = filter(cgMLST_melt, cgMLST_melt$check == "diff")
+between_patients$legend = "Between individuals"
+between_patients = data.frame(between_patients$dist, between_patients$legend)
+colnames(between_patients)[1] <- "dist"
+colnames(between_patients)[2] <- "legend"
+min(between_patients$dist)
+max(between_patients$dist)
+median(between_patients$dist)
+
+within_patients = filter(cgMLST_melt, cgMLST_melt$check == "same")
+within_patients = filter(within_patients, within_patients$Cat.x == "WIthin-patient")
+within_patients$legend = "Within individuals"
+within_patients = data.frame(within_patients$dist, within_patients$legend)
+colnames(within_patients)[1] <- "dist"
+colnames(within_patients)[2] <- "legend"
+min(within_patients$dist)
+max(within_patients$dist)
+median(within_patients$dist)
+
+within_site = filter(cgMLST_melt, cgMLST_melt$check == "same")
+within_site = filter(within_site, within_site$Cat.x == "Within-site")
+within_site$legend = "Within site"
+within_site = data.frame(within_site$dist, within_site$legend)
+colnames(within_site)[1] <- "dist"
+colnames(within_site)[2] <- "legend"
+min(within_site$dist)
+max(within_site$dist)
+median(within_site$dist)
+
+dist = c(cgMLST_matrix_all["AUSMDU00054152","AUSMDU00054265"], 
+         cgMLST_matrix_all["AUSMDU00056203","AUSMDU00056226"],
+         cgMLST_matrix_all["AUSMDU00058007","AUSMDU00058008"],
+         cgMLST_matrix_all["AUSMDU00058728","AUSMDU00058842"],
+         cgMLST_matrix_all["AUSMDU00059133","AUSMDU00059135"],
+         cgMLST_matrix_all["AUSMDU00059905","AUSMDU00059919"],
+         cgMLST_matrix_all["AUSMDU00060670","AUSMDU00060683"],
+         cgMLST_matrix_all["AUSMDU00061345","AUSMDU00061360"],
+         cgMLST_matrix_all["AUSMDU00064875","AUSMDU00064881"])
+legend = c("Paired couples")
+Pairs = data.frame(dist, legend)
+min(Pairs$dist)
+max(Pairs$dist)
+median(Pairs$dist)
+
+data_merged = rbind(between_patients, within_patients, within_site, Pairs)
+data_merged_within = rbind(within_patients, within_site, Pairs)
+
+rm(between_patients, within_patients, within_site, Pairs, dist, legend)
+```
+
+# Intra-patient threshold
+
+```{r, warning=F}
+ggplot(data_merged, aes(x=dist, fill = factor(legend, level = c("Between individuals", "Within individuals", "Within site", "Paired couples")))) +
+  geom_histogram(binwidth = 1) +
+  theme_bw() +
+  theme(axis.text.x = element_text(size = 8, angle = 45, hjust = 1),
+        legend.position = "none",
+        panel.background = element_rect(color = "black", size = 1),
+        strip.text.y = element_text(size = 8),
+        strip.background = element_rect(color="black", size = 1),
+        legend.title = element_text(size=8)) +
+  ylab("") +
+  xlab("Pairwise allelic difference") +
+  scale_fill_brewer(palette = "greens") +
+  scale_y_continuous(labels = function(x) format(x, scientific = FALSE, big.mark = " ")) +
+  ggtitle("") +
+  facet_grid(scales = "free", rows = vars(factor(legend, level = c("Between individuals", "Within individuals", "Within site", "Paired couples"))))
+
+
+ggplot(data_merged, aes(x=dist, fill = factor(legend, level = c("Between individuals", "Within individuals", "Within site", "Paired couples")))) +
+  geom_histogram(binwidth = 1) +
+  theme_bw() +
+  theme(axis.text.x = element_text(size = 8, angle = 45, hjust = 1),
+        legend.position = "none",
+        panel.background = element_rect(color = "black", size = 1),
+        strip.text.y = element_text(size = 8),
+        strip.background = element_rect(color="black", size = 1),
+        legend.title = element_text(size=8)) +
+  ylab("") +
+  xlab("Pairwise cgMLST distance") +
+  scale_fill_brewer(palette = "greens") +
+  scale_y_continuous(labels = function(x) format(x, scientific = FALSE, big.mark = " ")) +
+  ggtitle("") +
+  facet_grid(scales = "free", rows = vars(factor(legend, level = c("Between individuals", "Within individuals", "Within site", "Paired couples")))) +
+  scale_x_continuous(limits = c(-1, 10))
+```
+
+# Dates and distance correlation
+
+## LSD Tree using 95% gaps ML tree
+
+```{r}
+ggtree(tree, layout = 'rectangular', mrsd="2020-06-30", linewidth = 0.25) + 
+  theme_tree2() + 
+  xlab("Time") +
+  theme(panel.grid.major = element_line(color="darkgrey", size=.2),
+        panel.grid.minor = element_line(color="grey", size=.2, linetype = "dashed"),
+        panel.grid.major.y = element_blank(),
+        panel.grid.minor.y = element_blank()) +
+  scale_x_continuous(breaks= c(1880, 1900, 1920, 1940, 1960, 1980, 2000, 2020))
+```
+
+```{r}
+# Pairwise branch length distances for each pair of isolates
+dist_mat <- cophenetic(tree)
+row_sorted <- sort(rownames(dist_mat))
+col_sorted <- sort(colnames(dist_mat))
+dist_mat_sorted <- dist_mat[row_sorted, col_sorted]
+dist_mat_melt <- data.frame(ID1=rownames(dist_mat_sorted)[row(dist_mat_sorted)[upper.tri(dist_mat_sorted)]], ID2=colnames(dist_mat_sorted)[col(dist_mat_sorted)[upper.tri(dist_mat_sorted)]], dist=dist_mat_sorted[upper.tri(dist_mat_sorted)])
+dist_mat_melt$ID <- paste(dist_mat_melt$ID1, dist_mat_melt$ID2, sep = "_")
+dist_mat_melt <- dist_mat_melt[, -1]
+dist_mat_melt <- dist_mat_melt[, -1]
+
+# Pairwise cgMLST allelic different for each isolate
+cgMLST_dist_sorted <- cgMLST_matrix_unique[row_sorted, col_sorted]
+cgMLST_dist_melt <- data.frame(ID1=rownames(cgMLST_dist_sorted)[row(cgMLST_dist_sorted)[upper.tri(cgMLST_dist_sorted)]], ID2=colnames(cgMLST_dist_sorted)[col(cgMLST_dist_sorted)[upper.tri(cgMLST_dist_sorted)]], dist=cgMLST_dist_sorted[upper.tri(cgMLST_dist_sorted)])
+cgMLST_dist_melt$ID <- paste(cgMLST_dist_melt$ID1, cgMLST_dist_melt$ID2, sep = "_")
+cgMLST_dist_melt <- cgMLST_dist_melt[, -1]
+cgMLST_dist_melt <- cgMLST_dist_melt[, -1]
+colnames(cgMLST_dist_melt)[1] <- "cgMLST"
+
+#Merge dataframes together 
+branch_and_cgMLSTdist <- merge(cgMLST_dist_melt, dist_mat_melt, by = "ID", all.y = T, all.x = T)
+
+# Remove temporary dataframes
+rm(dist_mat, cgMLST_dist_sorted, dist_mat_sorted, dist_mat_melt, cgMLST_dist_sorted, col_sorted, row_sorted)
+
+
+# Plot association
+ggplot(branch_and_cgMLSTdist, aes(y = cgMLST, x = dist)) +
+  geom_bin2d(bins = 1000) +
+  geom_smooth(method = "lm", formula = y ~ x, color = "black", fill = "darkgrey", alpha = 0.8, se = TRUE) +
+  theme_bw() +
+  theme(axis.text.x = element_text(size = 8, angle = 45, hjust = 1),
+        panel.background = element_rect(color = "black", size = 1),
+        plot.title = element_text(size = 10),
+        legend.key.size = unit(2.5, 'mm'),
+        legend.text = element_text(size=8),
+        legend.title = element_text(size=8)) +
+  labs(x = "Branch length", y = "Pairwise allelic difference") +
+  scale_fill_continuous(type = "viridis") +
+  labs(fill = "Density") +
+  ggtitle("")
+
+```
+
+```{r}
+# Find the slope of the line 
+model <- lm(cgMLST ~ dist, data = branch_and_cgMLSTdist)
+coef(model)[2] / 52
+
+# Calculate the 95% confidence interval for the slope coefficient
+conf_interval <- confint(model, level = 0.95)
+conf_interval  
+coef(model)[2]
+```
+
+# Adjust distance for rate of cgMLST change
+
+adjusted pairwise cgMLST distance = unadjusted pairwise cgMLST
+distance - (cgMLST rate \* pairwise temporal distance)
+
+```{r}
+# melt the matrix of pairwise alleleic differences for just the 5,881 isolates that represent a unique infection.
+cgMLST_melt_unique <- melt(cgMLST_matrix_unique, varnames = c("ID1", "ID2"), value.name = "dist")
+
+#merge dates into the melted matrix (this may take ~10 minutes)
+cgMLST_melt_unique = cgMLST_melt_unique %>% merge(dates, by.x = "ID1", by.y = "ID", all.x = F, all.y = F) %>% merge(dates, by.x = "ID2", by.y = "ID", all.x = F, all.y = F)
+  
+# Check for NAs
+sum(is.na(cgMLST_melt_unique))
+
+# Make dates dates
+cgMLST_melt_unique$Date.x <- as.Date(cgMLST_melt_unique$Date.x, format = "%d/%m/%Y")
+cgMLST_melt_unique$Date.y <- as.Date(cgMLST_melt_unique$Date.y, format = "%d/%m/%Y")
+
+#calculate the pariwise temporal difference between isolates
+cgMLST_melt_unique$date = abs(difftime(cgMLST_melt_unique$Date.x, cgMLST_melt_unique$Date.y, units = "weeks"))
+cgMLST_melt_unique$weeks_apart <- as.numeric(cgMLST_melt_unique$date, units = "weeks")
+
+# Adjust by coefficent
+cgMLST_melt_unique$adjust = cgMLST_melt_unique$weeks_apart * 0.04994926  
+cgMLST_melt_unique$dist_adjusted = cgMLST_melt_unique$dist - cgMLST_melt_unique$adjust
+
+# Make all values positive
+cgMLST_melt_unique$dist_adjusted_pos = ifelse(cgMLST_melt_unique$dist_adjusted < 0, "0", cgMLST_melt_unique$dist_adjusted)
+
+# Make sure all values are numeric
+cgMLST_melt_unique$dist_adjusted_pos = as.numeric(cgMLST_melt_unique$dist_adjusted_pos)
+
+# Reshape data into matrix for next step
+adjusted_matrix <- dcast(cgMLST_melt_unique, ID1 ~ ID2, value.var = "dist_adjusted_pos")
+row.names(adjusted_matrix) <- adjusted_matrix$ID1
+adjusted_matrix$ID1 <- NULL
+adjusted_matrix = as.matrix(adjusted_matrix)
+```
+
+## Cluster using H-clust
+
+```{r}
+#without-threshold
+unadjusted_dist <- as.dist(cgMLST_matrix_unique) 
+
+unadjusted_hc <- hclust(unadjusted_dist, method = "single")
+
+unadjusted_cut <- cutree(unadjusted_hc, h=7)
+
+#convert to dataframe
+unadjusted_cut_df <- as.data.frame(unadjusted_cut)
+
+rm(unadjusted_cut)
+rm(unadjusted_hc)
+rm(unadjusted_dist)
+
+#adjusted-threshold
+adjusted_dist <- as.dist(adjusted_matrix)
+
+adjusted_hc <- hclust(adjusted_dist, method = "single")
+
+adjusted_cut <- cutree(adjusted_hc, h=7)
+
+#convert to dataframe
+adjusted_cut_df <- as.data.frame(adjusted_cut)
+
+rm(adjusted_cut)
+rm(adjusted_hc)
+rm(adjusted_dist)
+
+```
