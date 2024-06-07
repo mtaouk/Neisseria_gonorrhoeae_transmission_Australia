@@ -1,4 +1,4 @@
-# Longitudinal Genomic Analysis of *Neisseria gonorrhoeae* Transmission Dynamics in Australia
+![image](https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/assets/90819350/46b8918c-d7fd-4607-b335-931ccb3b5610)# Longitudinal Genomic Analysis of *Neisseria gonorrhoeae* Transmission Dynamics in Australia
 
 Mona L. Taouk, George Taiaroa, Sebastian Duchene, Soo Jen Low, Charlie K. Higgs, Darren Y. J. Lee, Shivani Pasricha, Nasra Higgins, Danielle J. Ingle, Benjamin P. Howden, Marcus Y. Chen, Christopher K. Fairley, Eric P. F. Chow, Deborah A. Williamson
 
@@ -24,7 +24,7 @@ The outputs were combined:
 
 `grep "" *_count.txt | sed 's/_count.txt:/\t/' > test.txt`
 
-The average read length for each genome was calculated and extracted from the results:
+The average read length for each genome was calculated using fq (v0.11.0) and extracted from the results:
 
 `fq --ref NCCP11945.fa AUSMDU00008753_1.fq.gz AUSMDU00008753_2.fq.gz > AUSMDU00008753.yield.tab`
 
@@ -35,11 +35,18 @@ The average read depth was calulated as follows: (number of reads mapping to ref
 ## Assemblies
 
 ### 1. Shovill
+
+De novo genome assemblies were generated using Shovill (v1.1.0):
+
 `shovill --outdir assemblies/AUSMDU00008753 --R1 /home/taouk/NGtransmission/reads/AUSMDU00008753_1.fq.gz --R2 /home/taouk/NGtransmission/reads/AUSMDU00008753_2.fq.gz`
+
+The names of each genome's contigs were changed from the default:
 
 `for i in $(cat IDs.txt); do mv ${i}/contigs.fa ${i}/${i}.contigs.fa; done`
 
 ### 2. Number of contigs
+The number of contigs for each genome was calculated:
+
 `grep -c "^>" */*contigs.fa > contigs_all.txt`
 
 ## Genotyping
