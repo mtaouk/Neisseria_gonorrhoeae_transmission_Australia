@@ -46,6 +46,8 @@ Code used in the study: Longitudinal Genomic Analysis of *Neisseria gonorrhoeae*
 
 The training file I used can be found in this github. It is called neisseria_gonorrhoeae.trn
 
+The scheme used is from doi: 10.1093/infdis/jiaa002 and can be downloaded from https://pubmlst.org/bigsdb?db=pubmlst_neisseria_seqdef&page=schemeInfo&scheme_id=62
+
 ### 2. Allele Calling
 `chewBBACA.py AlleleCall -i paths_to_assemblies.txt -g scheme_prepped --ptf /home/taouk/NGtransmission/cgMLST/neisseria_gonorrhoeae.trn -o results --cpu 50`
 
