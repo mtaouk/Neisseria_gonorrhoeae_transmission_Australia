@@ -44,6 +44,8 @@ Code used in the study: Longitudinal Genomic Analysis of *Neisseria gonorrhoeae*
 ### 1. Prepare Schema
 `chewBBACA.py PrepExternalSchema -i scheme_directory -o scheme_prepped --ptf /home/taouk/NGtransmission/cgMLST/neisseria_gonorrhoeae.trn --cpu 50 --st 0.3`
 
+The training file I used can be found in this github. It is called neisseria_gonorrhoeae.trn
+
 ### 2. Allele Calling
 `chewBBACA.py AlleleCall -i paths_to_assemblies.txt -g scheme_prepped --ptf /home/taouk/NGtransmission/cgMLST/neisseria_gonorrhoeae.trn -o results --cpu 50`
 
