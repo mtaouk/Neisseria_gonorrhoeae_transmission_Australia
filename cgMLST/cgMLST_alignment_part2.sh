@@ -3,18 +3,18 @@
 
 #1. Rename headers in alleles fasta file to simplified format (eg. NEIS0001_1)
 ## Replace first and last underscore with tab in headers, then merge first and last field to get new clean headers
-grep ">" all_merged_prep_7.fasta | sed 's/>//g' > oldheaders
+grep ">" all_alleles_cat.fasta | sed 's/>//g' > oldheaders
 cat oldheaders | sed 's/_/\t/1' | sed 's/\(.*\)_/\1\t/' | awk -F "\t" '{ print $1, $NF }' OFS="_" | sed 's/>//g' > cleanheaders
 # Make alias file for new headers
 paste oldheaders cleanheaders > alias.txt
 rm oldheaders cleanheaders
 # Rename sequences using seqkit
-seqkit replace -p '^(\S+)' -r '{kv}' -k alias.txt all_merged_prep_7.fasta > all_merged_prep_7.fasta.renamed
+seqkit replace -p '^(\S+)' -r '{kv}' -k alias.txt all_alleles_cat.fasta > all_alleles_cat.fasta.renamed
 rm alias.txt
 
 
 #2. Convert renamed alleles fasta to tab-delimited format
-seqkit fx2tab -j 4 -Q all_merged_prep_7.fasta.renamed > all_merged_prep_7.fasta.renamed.tab
+seqkit fx2tab -j 4 -Q all_alleles_cat.fasta.renamed > all_alleles_cat.fasta.renamed.tab
 
 
 #3. Split melted cgMLST data frame by geneid (into 1495 files)
@@ -24,8 +24,8 @@ awk -F "\t" '{ print >"lookup/"$2".txt" }' cgMLST_transposed.tsv
 
 
 #4. Split alleles tab-delimited file by geneid (into 1495 files). We will use this as a lookup file to get sequences for each genome
-awk '{ print $1, $1, $2 }' OFS="\t" all_merged_prep_7.fasta.renamed.tab | sed 's/_/\t/2' | cut -f1,2,4 > all_merged_prep_7.fasta.renamed.tab.tosplit
-awk -F "\t" '{ print >"lookup/"$2".lookup" }' all_merged_prep_7.fasta.renamed.tab.tosplit
+awk '{ print $1, $1, $2 }' OFS="\t" all_alleles_cat.fasta.renamed.tab | sed 's/_/\t/2' | cut -f1,2,4 > all_alleles_cat.fasta.renamed.tab.tosplit
+awk -F "\t" '{ print >"lookup/"$2".lookup" }' all_alleles_cat.fasta.renamed.tab.tosplit
 
 
 #5. Create list of genes, then loop through each gene, join genomes to sequences
