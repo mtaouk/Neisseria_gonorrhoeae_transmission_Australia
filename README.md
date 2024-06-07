@@ -142,6 +142,10 @@ The following R code details steps to determine a threshold for clustering, ajus
 
 The data required for the code can be downloaded from <a href="https://doi.org/10.26188/25989001">doi.org/10.26188/25989001</a>.
 
+## Odds ratios
+
+Add in the R code and input files when finalised.
+
 ## Whole genome alignments
 
 ### 1. Call variants
