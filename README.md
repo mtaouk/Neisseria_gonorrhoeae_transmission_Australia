@@ -1,6 +1,6 @@
 # Longitudinal Genomic Analysis of *Neisseria gonorrhoeae* Transmission Dynamics in Australia
 
-Mona L. Taouk, George Taiaroa, Sebastian Duchene, Soo Jen Low, Charlie K. Higgs, Darren Y J Lee, Shivani Pasricha, Nasra Higgins, Danielle J. Ingle, Benjamin P. Howden, Marcus Y. Chen, Christopher K. Fairley, Eric P. F. Chow, Deborah A. Williamson
+Mona L. Taouk, George Taiaroa, Sebastian Duchene, Soo Jen Low, Charlie K. Higgs, Darren Y. J. Lee, Shivani Pasricha, Nasra Higgins, Danielle J. Ingle, Benjamin P. Howden, Marcus Y. Chen, Christopher K. Fairley, Eric P. F. Chow, Deborah A. Williamson
 
 
 
