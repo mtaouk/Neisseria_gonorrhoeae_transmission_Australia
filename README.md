@@ -65,13 +65,13 @@ The scheme can be found <a href="https://doi: 10.1093/infdis/jiaa002" title="Har
 
 cgMLST allele calling final results:
 
-<a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/cgMLST/Results/cgMLST.tsv">cgMLST.tsv</a>: Table of allele calls for each gene in the scheme for all isolates.
+<a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/cgMLST/Results/cgMLST.tsv">cgMLST.tsv</a>: Table of alleles for each gene in the scheme for all isolates.
 
 <a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/cgMLST/Results/cgMLSTschema.txt">cgMLSTschema.txt</a>: 1495 genes included in final schema for this study.
 
-<a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/cgMLST/Results/mdata_stats.tsv">mdata_stats.tsv</a>: 
+<a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/cgMLST/Results/mdata_stats.tsv">mdata_stats.tsv</a>: Number of and percentage of uncalled genes per genome in the dataset. 
 
-<a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/cgMLST/Results/presence_absence.csv">presence_absence.csv</a>: Presence/absence table for each gene and each isolate.
+<a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/cgMLST/Results/presence_absence.csv">presence_absence.csv</a>: Gene presence/absence table. (1 present, 0 absent).
 
 
 ### 4. Transform allele calling spreadsheet to distance matrix
