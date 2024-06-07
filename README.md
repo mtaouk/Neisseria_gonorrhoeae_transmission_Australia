@@ -80,9 +80,9 @@ Matrix can be found <a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_tra
 
 
 ### 5. cgMLST alginment (only including 5,881 genomes)
-<a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/cgMLST/cgMLST_alignment_part1.r" title="R Script to preprocess the data">R Script to preprocess the data</a>
+<a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/cgMLST/cgMLST_alignment_part1.r">R Script to preprocess the data</a>
 
-<a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/cgMLST/cgMLST_alignment_part2.r" title="Bash script to make the alignments">Bash script to make the alignments</a>
+<a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/cgMLST/cgMLST_alignment_part2.r">Bash script to make the alignments</a>
 
 ### 6. 95% core alignment (only including 5,881 genomes)
 `trimal -in unique_pass.aln -out stripped_alignment.fasta -gt 0.05 -threads 40`
@@ -97,7 +97,7 @@ Matrix can be found <a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_tra
 
 R code on methods to determine threshold, adjust thresholds and call clusters: <a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/cgMLST/Threshold.Rmd" title="Threshold.Rmd">Threshold.Rmd</a>.
 
-Data can be downloaded from <a href="https://doi.org/10.26188/25989001" title="here">here</a>.
+Data can be downloaded from <a href="https://doi.org/10.26188/25989001">doi.org/10.26188/25989001</a>.
 
 ## Snippy
 
