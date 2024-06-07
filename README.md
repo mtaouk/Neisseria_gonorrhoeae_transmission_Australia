@@ -53,12 +53,21 @@ The number of contigs for each genome was calculated:
 ## Genotyping
 
 ### 1. MLST
+
+MLSTs were identified using mlst (v2.23.0; PubMLST database accessed May 5th 2023):
+
 `mlst --legacy --scheme neisseria assemblies/*/*.contigs.fa > mlst_results.txt`
 
 ### 2. NG-MAST
+
+NG‐MASTs were assigned using NGmaster (1.0.0; NG-MAST v2.0 PubMLST database accessed May 5, 2023):
+
 `ngmaster assemblies/*/*.contigs.fa > ngmast_results.txt` 
 
 ### 3. NG-STAR
+
+the NG-STAR typing scheme was used to determine the phenotypic profile of seven resistance genes (*penA*, *mtrR*, *porB*, *ponA*, *gyrA*, *parC* and *23S* rRNA), using pyngSTar(database version 2.0). NG-STAR alleles and profiles obtained from the database hosted by the <a href="https://ngstar.canada.ca/alleles/loci_selection?lang=en" title="Public Health Agency of Canada">Public Health Agency of Canada</a>.
+
 `python3 /home/taouk/pyngSTar/pyngSTar.py -f -a -i assemblies/*/*.contigs.fa -p /home/taouk/pyngSTar/pyngSTarDB/ > ngstar_results.txt`
 
 ## cgMLST
