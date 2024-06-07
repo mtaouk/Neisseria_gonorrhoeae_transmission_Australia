@@ -73,6 +73,7 @@ Bash script to make the alignments
 
 ### 12. Determine threshold and adjust for timed between samples
 see cgMLST_threshold/Threshold.Rmd
+Data can be downloaded from https://doi.org/10.26188/25989001 
 
 ## Snippy
 
