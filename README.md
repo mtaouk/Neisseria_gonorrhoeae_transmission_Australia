@@ -72,7 +72,8 @@ Bash script to make the alignments
 `/home/taouk/lsd-0.3beta-master/src/lsd -d dates.tsv -i 95gapsMP.tree -c`
 
 ### 12. Determine threshold and adjust for timed between samples
-see cgMLST_threshold/Threshold.Rmd
+see Threshold.Rmd for R code on methods to determine threshold, adjust thresholds and call clusters. 
+
 Data can be downloaded from https://doi.org/10.26188/25989001 
 
 ## Snippy
