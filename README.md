@@ -45,6 +45,12 @@ Mona L. Taouk, George Taiaroa, Sebastian Duchene, Soo Jen Low, Charlie K. Higgs,
 ## cgMLST
 
 ### 1. Prepare Schema
+Make training file:
+
+`prodigal -i NCCP11945.fa -t neisseria_gonorrhoeae.trn -p single`
+
+Prepare the downloaded schema:
+
 `chewBBACA.py PrepExternalSchema -i scheme_directory -o scheme_prepped --ptf /home/taouk/NGtransmission/cgMLST/neisseria_gonorrhoeae.trn --cpu 50 --st 0.3`
 
 The training file I used can be found in this github. It is called neisseria_gonorrhoeae.trn
