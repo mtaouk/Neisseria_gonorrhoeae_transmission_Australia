@@ -65,7 +65,10 @@ The scheme can be found <a href="https://doi: 10.1093/infdis/jiaa002" title="Har
 
 cgMLST allele calling final results:
 
-<a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/cgMLST/neisseria_gonorrhoeae.trn" title="Here">here</a>
+<a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/cgMLST/Results/cgMLST.tsv">cgMLST.tsv</a>
+<a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/cgMLST/Results/cgMLSTschema.txt">cgMLSTschema.txt</a>
+<a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/cgMLST/Results/mdata_stats.tsv">mdata_stats.tsv</a>
+<a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/cgMLST/Results/presence_absence.csv">presence_absence.csv</a>
 
 ### 4. Transform allele calling spreadsheet to distance matrix
 `cgmlst-dists results/evaluate/cgMLST.tsv > pairwise_distances_0.95_cgMLST.txt` 
