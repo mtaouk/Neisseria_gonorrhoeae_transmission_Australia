@@ -73,20 +73,24 @@ The NG-STAR typing scheme was used to determine the phenotypic profile of seven 
 ## cgMLST
 
 ### 1. Prepare schema
-A prodigal training file for *N. gonorrhoeae* was made using the NCCP11945 reference genome:
+A prodigal training file for *N. gonorrhoeae* was made using the NCCP11945 reference genome using prodigal (v.2.6.3):
 
 `prodigal -i NCCP11945.fa -t neisseria_gonorrhoeae.trn -p single`
 
 Training file: <a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/cgMLST/neisseria_gonorrhoeae.trn" title="neisseria_gonorrhoeae.trn">neisseria_gonorrhoeae.trn</a>.
 
-The *N. gonorrhoeae* cgMLST schema developed by <a href="https://doi: 10.1093/infdis/jiaa002" title="Harrison et al.">Harrison et al.</a> was downloaded from <a href="https://pubmlst.org/bigsdb?db=pubmlst_neisseria_seqdef&page=schemeInfo&scheme_id=62" title="PubMLST">PubMLST</a> and prepared for use:
+The *N. gonorrhoeae* cgMLST schema developed by <a href="https://doi: 10.1093/infdis/jiaa002" title="Harrison et al.">Harrison et al.</a> was downloaded from <a href="https://pubmlst.org/bigsdb?db=pubmlst_neisseria_seqdef&page=schemeInfo&scheme_id=62" title="PubMLST">PubMLST</a> and prepared for use using chewBBACA (v2.8.5):
 
 `chewBBACA.py PrepExternalSchema -i scheme_directory -o scheme_prepped --ptf /home/taouk/NGtransmission/cgMLST/neisseria_gonorrhoeae.trn --cpu 50 --st 0.3`
 
 ### 2. Allele calling
+Allele calling was performed on all *N. gonorrhoeae* genomes, using the assemblies as input:
+
 `chewBBACA.py AlleleCall -i paths_to_assemblies.txt -g scheme_prepped --ptf /home/taouk/NGtransmission/cgMLST/neisseria_gonorrhoeae.trn -o results --cpu 50`
 
 ### 3. Refining schema 
+The schema was refined to only include genes present in 95% of genomes in the dataset:
+
 `chewBBACA.py ExtractCgMLST -i results/results_20211011T232621/results_alleles.tsv --r results/results_20220602T014232/RepeatedLoci.txt -o evaluate95 --t 0.95` 
 
 cgMLST allele calling final results:
@@ -99,10 +103,12 @@ cgMLST allele calling final results:
 
 <a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/cgMLST/Results/presence_absence.csv">presence_absence.csv</a>: Gene presence/absence table. (1 present, 0 absent).
 
-### 4. Transform allele calling spreadsheet to distance matrix
+### 4. cgMLST alleleic differences
+The cgMLST results table was transformed to a symmetrical distance matrix using cgmlst-dists:
+
 `cgmlst-dists results/evaluate/cgMLST.tsv > cgMLST_matrix.txt` 
 
-Resulting matrix can be found <a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/cgMLST/Results/cgMLST_matrix.csv.zip">here</a>.
+Resulting matrix: <a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/cgMLST/Results/cgMLST_matrix.csv.zip">cgMLST_matrix.csv.zip</a>.
 
 The values from this matrix were adjusted in step 12.  
 
