@@ -73,9 +73,11 @@ cgMLST allele calling final results:
 
 <a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/cgMLST/Results/presence_absence.csv">presence_absence.csv</a>: Gene presence/absence table. (1 present, 0 absent).
 
-
 ### 4. Transform allele calling spreadsheet to distance matrix
 `cgmlst-dists results/evaluate/cgMLST.tsv > cgMLST_matrix.txt` 
+
+Matrix can be found <a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/cgMLST/Results/cgMLST_matrix.csv.zip">here</a>
+
 
 ### 5. cgMLST alginment (only including 5,881 genomes)
 <a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/cgMLST/cgMLST_alignment_part1.r" title="R Script to preprocess the data">R Script to preprocess the data</a>
