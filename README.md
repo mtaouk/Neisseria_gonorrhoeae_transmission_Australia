@@ -53,9 +53,9 @@ Prepare the downloaded schema:
 
 `chewBBACA.py PrepExternalSchema -i scheme_directory -o scheme_prepped --ptf /home/taouk/NGtransmission/cgMLST/neisseria_gonorrhoeae.trn --cpu 50 --st 0.3`
 
-The training file I used can be found <a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/cgMLST/neisseria_gonorrhoeae.trn" title="Here">here</a>
+The training file I used can be found <a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/cgMLST/neisseria_gonorrhoeae.trn" title="Here">here</a>.
 
-The scheme can be found <a href="https://doi: 10.1093/infdis/jiaa002" title="Harrison et al.">Harrison et al.</a> and can be downloaded from <a href="https://pubmlst.org/bigsdb?db=pubmlst_neisseria_seqdef&page=schemeInfo&scheme_id=62" title="PubMLST">PubMLST</a>
+The scheme can be found <a href="https://doi: 10.1093/infdis/jiaa002" title="Harrison et al.">Harrison et al.</a> and can be downloaded from <a href="https://pubmlst.org/bigsdb?db=pubmlst_neisseria_seqdef&page=schemeInfo&scheme_id=62" title="PubMLST">PubMLST</a>.
 
 ### 2. Allele Calling
 `chewBBACA.py AlleleCall -i paths_to_assemblies.txt -g scheme_prepped --ptf /home/taouk/NGtransmission/cgMLST/neisseria_gonorrhoeae.trn -o results --cpu 50`
@@ -82,9 +82,9 @@ The scheme can be found <a href="https://doi: 10.1093/infdis/jiaa002" title="Har
 
 ### 12. Determine threshold and adjust for timed between samples
 
-R code on methods to determine threshold, adjust thresholds and call clusters: <a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/cgMLST/Threshold.Rmd" title="Threshold.Rmd">Threshold.Rmd</a>
+R code on methods to determine threshold, adjust thresholds and call clusters: <a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/cgMLST/Threshold.Rmd" title="Threshold.Rmd">Threshold.Rmd</a>.
 
-Data can be downloaded from <a href="https://doi.org/10.26188/25989001" title="here">here</a>
+Data can be downloaded from <a href="https://doi.org/10.26188/25989001" title="here">here</a>.
 
 ## Snippy
 
