@@ -53,9 +53,9 @@ Prepare the downloaded schema:
 
 `chewBBACA.py PrepExternalSchema -i scheme_directory -o scheme_prepped --ptf /home/taouk/NGtransmission/cgMLST/neisseria_gonorrhoeae.trn --cpu 50 --st 0.3`
 
-The training file I used can be found <a href="[https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/cgMLST/neisseria_gonorrhoeae.trn]">here</a>.
+The training file I used can be found <a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/cgMLST/neisseria_gonorrhoeae.trn" title="Here">here</a>
 
-The scheme used is from doi: 10.1093/infdis/jiaa002 and can be downloaded from https://pubmlst.org/bigsdb?db=pubmlst_neisseria_seqdef&page=schemeInfo&scheme_id=62
+The scheme can be found <a href="https://doi: 10.1093/infdis/jiaa002" title="Harrison et al.">Harrison et al.</a> and can be downloaded from <a href="https://pubmlst.org/bigsdb?db=pubmlst_neisseria_seqdef&page=schemeInfo&scheme_id=62" title="PubMLST">PubMLST</a>
 
 ### 2. Allele Calling
 `chewBBACA.py AlleleCall -i paths_to_assemblies.txt -g scheme_prepped --ptf /home/taouk/NGtransmission/cgMLST/neisseria_gonorrhoeae.trn -o results --cpu 50`
@@ -67,13 +67,9 @@ The scheme used is from doi: 10.1093/infdis/jiaa002 and can be downloaded from h
 `cgmlst-dists results/evaluate/cgMLST.tsv > pairwise_distances_0.95_cgMLST.txt` 
 
 ### 5. cgMLST alginment (only including 5,881 genomes)
-R Script to preprocess the data
+<a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/cgMLST/cgMLST_alignment_part1.r" title="R Script to preprocess the data">R Script to preprocess the data</a>
 
-`R cgMLST_alignment_part1.r`
-
-Bash script to make the alignments
-
-`bash cgMLST_alignmen_part2.sh`
+<a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/cgMLST/cgMLST_alignment_part2.r" title="Bash script to make the alignments">Bash script to make the alignments</a>
 
 ### 6. 95% core alignment (only including 5,881 genomes)
 `trimal -in unique_pass.aln -out stripped_alignment.fasta -gt 0.05 -threads 40`
@@ -85,9 +81,10 @@ Bash script to make the alignments
 `/home/taouk/lsd-0.3beta-master/src/lsd -d dates.tsv -i 95gapsMP.tree -c`
 
 ### 12. Determine threshold and adjust for timed between samples
-see Threshold.Rmd for R code on methods to determine threshold, adjust thresholds and call clusters. 
 
-Data can be downloaded from https://doi.org/10.26188/25989001 
+R code on methods to determine threshold, adjust thresholds and call clusters: <a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/cgMLST/Threshold.Rmd" title="Threshold.Rmd">Threshold.Rmd</a>
+
+Data can be downloaded from <a href="https://doi.org/10.26188/25989001" title="here">here</a>
 
 ## Snippy
 
