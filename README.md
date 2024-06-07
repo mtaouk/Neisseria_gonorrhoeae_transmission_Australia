@@ -53,7 +53,7 @@ Prepare the downloaded schema:
 
 `chewBBACA.py PrepExternalSchema -i scheme_directory -o scheme_prepped --ptf /home/taouk/NGtransmission/cgMLST/neisseria_gonorrhoeae.trn --cpu 50 --st 0.3`
 
-The training file I used can be found <a href="[url](https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/cgMLST/neisseria_gonorrhoeae.trn)">here</a>.
+The training file I used can be found <a href="[https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/cgMLST/neisseria_gonorrhoeae.trn]">here</a>.
 
 The scheme used is from doi: 10.1093/infdis/jiaa002 and can be downloaded from https://pubmlst.org/bigsdb?db=pubmlst_neisseria_seqdef&page=schemeInfo&scheme_id=62
 
