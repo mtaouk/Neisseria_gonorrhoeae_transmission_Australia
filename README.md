@@ -132,15 +132,15 @@ A maximum liklihood phylogenetic tree was generated using IQ-tree (v2.0.3):
 
 The best-fitting nucleotide substitution model based on the lowest Bayesian Information Criterion (BIC) was GTR+I+R10.
 
-
 ### 11. Timed phylogeny
+Molecular dating of ancestral events was performed using the least-squares dating (LSD) software (v0.3), with the maximum liklihood phylogeny generated in the above step used as input:
+
 `/home/taouk/lsd-0.3beta-master/src/lsd -d dates.tsv -i 95gapsMP.tree -c`
 
-### 12. Determine threshold and adjust for timed between samples
+### 12. Determine threshold for clustering
+The following R code details steps to determine a threshold for clustering, ajusting the threshold for time between sample collection dates and performing clustering: <a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/cgMLST/Threshold.Rmd" title="Threshold.Rmd">Threshold.Rmd</a>.
 
-R code on methods to determine threshold, adjust thresholds and call clusters: <a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/cgMLST/Threshold.Rmd" title="Threshold.Rmd">Threshold.Rmd</a>.
-
-Data can be downloaded from <a href="https://doi.org/10.26188/25989001">doi.org/10.26188/25989001</a>.
+The data required for the code can be downloaded from <a href="https://doi.org/10.26188/25989001">doi.org/10.26188/25989001</a>.
 
 ## Snippy
 
