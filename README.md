@@ -44,7 +44,7 @@ Mona L. Taouk, George Taiaroa, Sebastian Duchene, Soo Jen Low, Charlie K. Higgs,
 
 ## cgMLST
 
-### 1. Prepare Schema
+### 1. Prepare schema
 Make training file:
 
 `prodigal -i NCCP11945.fa -t neisseria_gonorrhoeae.trn -p single`
@@ -57,10 +57,10 @@ The training file I used can be found <a href="https://github.com/mtaouk/Neisser
 
 The scheme can be found <a href="https://doi: 10.1093/infdis/jiaa002" title="Harrison et al.">Harrison et al.</a> and can be downloaded from <a href="https://pubmlst.org/bigsdb?db=pubmlst_neisseria_seqdef&page=schemeInfo&scheme_id=62" title="PubMLST">PubMLST</a>.
 
-### 2. Allele Calling
+### 2. Allele calling
 `chewBBACA.py AlleleCall -i paths_to_assemblies.txt -g scheme_prepped --ptf /home/taouk/NGtransmission/cgMLST/neisseria_gonorrhoeae.trn -o results --cpu 50`
 
-### 3. Refining Schema 
+### 3. Refining schema 
 `chewBBACA.py ExtractCgMLST -i results/results_20211011T232621/results_alleles.tsv --r results/results_20220602T014232/RepeatedLoci.txt -o evaluate95 --t 0.95` 
 
 ### 4. Transform allele calling spreadsheet to distance matrix
@@ -74,10 +74,10 @@ The scheme can be found <a href="https://doi: 10.1093/infdis/jiaa002" title="Har
 ### 6. 95% core alignment (only including 5,881 genomes)
 `trimal -in unique_pass.aln -out stripped_alignment.fasta -gt 0.05 -threads 40`
 
-### 10. Tree
+### 10. Maximum likelihood phylogeny
 `iqtree -s stripped_alignment.fasta -B 1000 -T 40`
 
-### 11. Timed tree
+### 11. Timed phylogeny
 `/home/taouk/lsd-0.3beta-master/src/lsd -d dates.tsv -i 95gapsMP.tree -c`
 
 ### 12. Determine threshold and adjust for timed between samples
@@ -96,7 +96,7 @@ Data can be downloaded from <a href="https://doi.org/10.26188/25989001" title="h
 ### 2. Gubbins on 5881 unique genomes
 `run_gubbins.py 5881.full.aln`
 
-### 3. Whole dataset tree
+### 3. Whole dataset phylogeny
 `coresnpfilter -e -c 1.0 gubbins.output > 5881.core.aln`
 
 `iqtree -s 5881.core.aln -B 1000 -T 40`
@@ -108,12 +108,22 @@ Data can be downloaded from <a href="https://doi.org/10.26188/25989001" title="h
 
 ## BEAST
 
-### 1. subset alignments from core
+### 1. Subset alignments
+Make alignments for each cluster:
+
 `bash split.sh`
 
-### 2. Make iqtree trees from alignemnts
+Data can be downloaded from <a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/Timed_trees/split.sh" title="split.sh">split.sh</a>.
+
+### 2. Make Maximum likelihood phylogenies and timed phylogenetic trees from alignments
+Make iqtree trees for each cluster alignments and then input into LSD to make timed trees:
+
 `bash trees.sh`
 
+<a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/Timed_trees/trees.sh" title="trees.sh">trees.sh</a>.
+
+<a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/Timed_trees/dates.sh" title="here">dates.sh</a>.
+
 ### 3. Run BEAST 
-script from Sebastain
+Script from Sebastian to be added here
 
