@@ -1,4 +1,4 @@
-![image](https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/assets/90819350/46b8918c-d7fd-4607-b335-931ccb3b5610)# Longitudinal Genomic Analysis of *Neisseria gonorrhoeae* Transmission Dynamics in Australia
+# Longitudinal Genomic Analysis of *Neisseria gonorrhoeae* Transmission Dynamics in Australia
 
 Mona L. Taouk, George Taiaroa, Sebastian Duchene, Soo Jen Low, Charlie K. Higgs, Darren Y. J. Lee, Shivani Pasricha, Nasra Higgins, Danielle J. Ingle, Benjamin P. Howden, Marcus Y. Chen, Christopher K. Fairley, Eric P. F. Chow, Deborah A. Williamson
 
