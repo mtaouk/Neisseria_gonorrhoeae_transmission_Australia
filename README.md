@@ -113,7 +113,7 @@ Make alignments for each cluster:
 
 `bash split.sh`
 
-Data can be downloaded from <a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/Timed_trees/split.sh" title="split.sh">split.sh</a>.
+<a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/Timed_trees/split.sh" title="split.sh">split.sh</a>.
 
 ### 2. Make Maximum likelihood phylogenies and timed phylogenetic trees from alignments
 Make iqtree trees for each cluster alignments and then input into LSD to make timed trees:
