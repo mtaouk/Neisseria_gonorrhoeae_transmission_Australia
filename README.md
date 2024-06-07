@@ -66,24 +66,22 @@ NG‐MASTs were assigned using NGmaster (1.0.0; NG-MAST v2.0 PubMLST database ac
 
 ### 3. NG-STAR
 
-the NG-STAR typing scheme was used to determine the phenotypic profile of seven resistance genes (*penA*, *mtrR*, *porB*, *ponA*, *gyrA*, *parC* and *23S* rRNA), using pyngSTar(database version 2.0). NG-STAR alleles and profiles obtained from the database hosted by the <a href="https://ngstar.canada.ca/alleles/loci_selection?lang=en" title="Public Health Agency of Canada">Public Health Agency of Canada</a>.
+The NG-STAR typing scheme was used to determine the phenotypic profile of seven resistance genes (*penA*, *mtrR*, *porB*, *ponA*, *gyrA*, *parC* and *23S* rRNA), using pyngSTar(database version 2.0). NG-STAR alleles and profiles obtained from the database hosted by the <a href="https://ngstar.canada.ca/alleles/loci_selection?lang=en" title="Public Health Agency of Canada">Public Health Agency of Canada</a>:
 
 `python3 /home/taouk/pyngSTar/pyngSTar.py -f -a -i assemblies/*/*.contigs.fa -p /home/taouk/pyngSTar/pyngSTarDB/ > ngstar_results.txt`
 
 ## cgMLST
 
 ### 1. Prepare schema
-Make training file:
+A prodigal training file for *N. gonorrhoeae* was made using the NCCP11945 reference genome:
 
 `prodigal -i NCCP11945.fa -t neisseria_gonorrhoeae.trn -p single`
 
-Prepare the downloaded schema:
+Training file: <a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/cgMLST/neisseria_gonorrhoeae.trn" title="neisseria_gonorrhoeae.trn">neisseria_gonorrhoeae.trn</a>.
+
+The *N. gonorrhoeae* cgMLST schema developed by <a href="https://doi: 10.1093/infdis/jiaa002" title="Harrison et al.">Harrison et al.</a> was downloaded from <a href="https://pubmlst.org/bigsdb?db=pubmlst_neisseria_seqdef&page=schemeInfo&scheme_id=62" title="PubMLST">PubMLST</a> and prepared for use:
 
 `chewBBACA.py PrepExternalSchema -i scheme_directory -o scheme_prepped --ptf /home/taouk/NGtransmission/cgMLST/neisseria_gonorrhoeae.trn --cpu 50 --st 0.3`
-
-The training file I used can be found <a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/cgMLST/neisseria_gonorrhoeae.trn" title="Here">here</a>.
-
-The scheme can be found <a href="https://doi: 10.1093/infdis/jiaa002" title="Harrison et al.">Harrison et al.</a> and can be downloaded from <a href="https://pubmlst.org/bigsdb?db=pubmlst_neisseria_seqdef&page=schemeInfo&scheme_id=62" title="PubMLST">PubMLST</a>.
 
 ### 2. Allele calling
 `chewBBACA.py AlleleCall -i paths_to_assemblies.txt -g scheme_prepped --ptf /home/taouk/NGtransmission/cgMLST/neisseria_gonorrhoeae.trn -o results --cpu 50`
