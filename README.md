@@ -240,7 +240,7 @@ performed on the remaining ML trees, using the least-squares dating
 substitutions per site as previously defined. The subsequent timed trees
 were used as input for a Bayesian hierarchical model.
 
-In short, ML phylogenetic trees were made for each subset alignments:
+In short, ML phylogenetic trees were made from each subset alignments:
 
 `iqtree -s snippy.fasta -B 1000 -T 60`
 
