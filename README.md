@@ -147,7 +147,7 @@ matrix using cgmlst-dists:
 Resulting matrix:
 <a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/cgMLST/Results/cgMLST_matrix.csv.zip">cgMLST_matrix.csv.zip</a>.
 
-The values from this matrix were adjusted in href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia?tab=readme-ov-file#12-determine-threshold-for-clustering">step 12</a>.
+The values from this matrix were adjusted in <a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia?tab=readme-ov-file#12-determine-threshold-for-clustering">step 12</a>.
 
 ### 5. cgMLST alginment (only including 5,881 genomes)
 
