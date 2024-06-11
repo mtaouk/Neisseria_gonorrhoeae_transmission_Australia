@@ -175,7 +175,7 @@ and timed phylogenetic trees were made from each ML phylogeny:
 `/home/taouk/lsd-0.3beta-master/src/lsd -d dates.txt -i cluster.tree -c -r a -w rate.txt` 
 
 The rate in the rate file was 4.54E-6.
-The dates.txt is a tab seperated file that has the IDs in one column and the date of collection in decimal format for each isolate. A sepearte file was generated for each cluster. The decimal date for each isolate can be found in <a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/Timed_trees/dates.txt" title="dates.txt">dates.txt</a>.
+The dates.txt input is a tab seperated file that has the IDs in one column and the date of collection in decimal format in another for each isolate. A sepearte file was generated for each cluster. The decimal date for each isolate can be found in <a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/Timed_trees/dates.txt" title="dates.txt">dates.txt</a>.
 
 ### 4. Bayesian hierarchical model 
 
