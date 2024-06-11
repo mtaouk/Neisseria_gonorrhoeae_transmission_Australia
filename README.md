@@ -160,23 +160,24 @@ A pseudoalignment of all genomes was generated:
 
 ### 2. Subset alignments
 
-Whole genome pseudoalignments were subset from the entire dataset for each of the previously defined cgMLST clusters with at least 5 isolates (including only the 3,714 *N. gonorrhoeae* genomes collected after 1st July 2019). The following shell script subsets the alignments: <a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/Timed_trees/split.sh" title="split.sh">split.sh</a>. The script requires <a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/Timed_trees/clusters.txt">clusters.txt</a> as input as well as the whole dataset pseudoalignment.
+Cluster whole genome pseudoalignments were subset from the entire dataset pseudoalignments for each of the previously defined cgMLST clusters with at least 5 isolates collected after 1st July 2019. A list of these isolates and their clusters can be found in <a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/Timed_trees/clustersover5.txt" title="clustersover5.txt">clustersover5.txt</a>. Isolates have been renamed to append the decimal date to each ID for Step 4. 
 
 ### 3. ML and timed phylogenies
 
-For each cluster alignment, ML phylogenetic trees were inferred using IQ-tree (v2.0.3), with the best-fitting nucleotide substitution model chosen based on the lowest BIC. Molecular dating of ancestral events was performed on the remaining ML trees, using the least-squares dating (LSD) software (0.3) with -r -c parameters and a rate of 4.5x10-6 substitutions per site as previously defined. The subsequent timed trees were used as input for a Bayesian hierarchical model. The following script makes the trees: <a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/Timed_trees/trees.sh" title="trees.sh">trees.sh</a> and requires <a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/Timed_trees/dates.sh" title="here">dates.sh</a> to run, as well as <a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/Timed_trees/clustersover5.txt">clustersover5.txt</a>, <a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/Timed_trees/dates.txt" title="here">dates.txt</a>, and the files generated in the above script.
+For each cluster alignment, ML phylogenetic trees were inferred using IQ-tree (v2.0.3), with the best-fitting nucleotide substitution model chosen based on the lowest BIC. Molecular dating of ancestral events was performed on the remaining ML trees, using the least-squares dating (LSD) software (0.3) with -r -c parameters and a rate of 4.5x10-6 substitutions per site as previously defined. The subsequent timed trees were used as input for a Bayesian hierarchical model. 
 
-In short, ML phylogenetic trees were made:
+In short, ML phylogenetic trees were made for each subset alignments:
 
 `iqtree -s snippy.fasta -B 1000 -T 60`
 
-and timed phylogenetic trees were made:
+and timed phylogenetic trees were made from each ML phylogeny:
 
 `/home/taouk/lsd-0.3beta-master/src/lsd -d dates.txt -i cluster.tree -c -r a -w rate.txt` 
 
 The rate in the rate file was 4.54E-6.
+The dates.txt is a tab seperated file that has the IDs in one column and the date of collection in decimal format for each isolate. A sepearte file was generated for each cluster. The decimal date for each isolate can be found in <a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/Timed_trees/dates.txt" title="dates.txt">dates.txt</a>.
 
 ### 4. Bayesian hierarchical model 
 
-Script from Sebastian to be added here please
+The timed phylogenetic trees for each cluster were input into a Bayesian hierarchical model using this script. TO ADD.
 
