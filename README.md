@@ -230,8 +230,8 @@ of these isolates and their clusters can be found in
 <a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/Timed_trees/clustersover5.txt" title="clustersover5.txt">clustersover5.txt</a>.
 
 Note: Isolates were renamed to append the decimal date to each ID for
-<a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia?tab=readme-ov-file#4-bayesian-hierarchical-model">step
-4</a>.
+<a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia?tab=readme-ov-file#5-bayesian-hierarchical-model">step
+5</a>.
 
 ### 3. Recombination filtering
 
@@ -268,7 +268,7 @@ isolate. A separate file was generated for each cluster. The decimal
 date for each isolate can be found in
 <a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/Timed_trees/dates.txt" title="dates.txt">dates.txt</a>.
 
-### 4. Bayesian hierarchical model
+### 5. Bayesian hierarchical model
 
 The timed phylogenetic trees for each cluster were input into a Bayesian
 hierarchical model using this script. TO ADD.
