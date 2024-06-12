@@ -243,12 +243,12 @@ psuedoalignments as input:
 
 ### 4. ML and timed phylogenies
 
-For each cluster full whole genome pseudoalignment, the number of
-constant sites was calculated using snp-sites (v1):
+For each cluster whole genome pseudoalignment, the number of constant
+sites was calculated using snp-sites (v1):
 
 `snp-sites -C group_14_snippy.fasta`
 
-For each cluster's gubbins filtered SNP alignment, ML phylogenetic trees
+For each cluster gubbins filtered SNP alignment, ML phylogenetic trees
 were inferred using IQ-tree (v2.0.3), with the best-fitting nucleotide
 substitution model chosen based on the lowest BIC and the number of
 constant sites specified:
