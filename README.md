@@ -147,7 +147,9 @@ matrix using cgmlst-dists:
 Resulting matrix:
 <a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/cgMLST/Results/cgMLST_matrix.csv.zip">cgMLST_matrix.csv.zip</a>.
 
-The values from this matrix were adjusted in <a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia?tab=readme-ov-file#12-determine-threshold-for-clustering">step 12</a>.
+The values from this matrix were adjusted in
+<a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia?tab=readme-ov-file#12-determine-threshold-for-clustering">step
+12</a>.
 
 ### 5. cgMLST alginment (only including 5,881 genomes)
 
@@ -227,32 +229,43 @@ clusters with at least 5 isolates collected after 1st July 2019. A list
 of these isolates and their clusters can be found in
 <a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/Timed_trees/clustersover5.txt" title="clustersover5.txt">clustersover5.txt</a>.
 
-Note: Isolates were renamed to append the decimal date to each ID for <a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia?tab=readme-ov-file#4-bayesian-hierarchical-model">step 4</a>.
+Note: Isolates were renamed to append the decimal date to each ID for
+<a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia?tab=readme-ov-file#4-bayesian-hierarchical-model">step
+4</a>.
 
+### 3. Recombination filtering
 
-### 3. ML and timed phylogenies
+Recombination filtering was performed using Gubbins (v2.4.1) with
+default settings for all clusters with the full whole genome
+psuedoalignments as input:
 
-For each cluster alignment, ML phylogenetic trees were inferred using
-IQ-tree (v2.0.3), with the best-fitting nucleotide substitution model
-chosen based on the lowest BIC. Molecular dating of ancestral events was
-performed on the remaining ML trees, using the least-squares dating
-(LSD) software (0.3) with -r -c parameters and a rate of 4.5x10-6
-substitutions per site as previously defined. The subsequent timed trees
-were used as input for a Bayesian hierarchical model.
+`run_gubbins.py --threads 10 full_alignments/group_14_snippy.fasta`
 
-In short, ML phylogenetic trees were made from each subset alignments:
+### 4. ML and timed phylogenies
 
-`iqtree -s snippy.fasta -B 1000 -T 60`
+For each cluster full whole genome pseudoalignment, the number of
+constant sites was calculated using snp-sites (v1):
 
-and timed phylogenetic trees were made from each ML phylogeny:
+`snp-sites -C group_14_snippy.fasta`
 
-`/home/taouk/lsd-0.3beta-master/src/lsd -d dates.txt -i cluster.tree -c -r a -w rate.txt`
+For each cluster's gubbins filtered SNP alignment, ML phylogenetic trees
+were inferred using IQ-tree (v2.0.3), with the best-fitting nucleotide
+substitution model chosen based on the lowest BIC and the number of
+constant sites specified:
 
-The rate in the rate file was 4.54E-6. The dates.txt input is a tab
-separated file that has the IDs in one column and the date of collection
-in decimal format in another for each isolate. A separate file was
-generated for each cluster. The decimal date for each isolate can be
-found in
+`iqtree -s group_14_snippy_gubbins.fasta -B 1000 -T 60 -fconst 484048,535722,549723,494991`
+
+Molecular dating of ancestral events was performed on the resulting ML
+trees, using the least-squares dating (LSD) software (v0.3) with -r -c
+parameters and a rate of 4.5x10-6 substitutions per site as previously
+defined:
+
+`/home/taouk/lsd-0.3beta-master/src/lsd -d dates.txt -i group_14_ML.tree -c -r a -w rate.txt`
+
+The dates.txt input is a tab separated file that has the IDs in one
+column and the date of collection in decimal format in another for each
+isolate. A separate file was generated for each cluster. The decimal
+date for each isolate can be found in
 <a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/Timed_trees/dates.txt" title="dates.txt">dates.txt</a>.
 
 ### 4. Bayesian hierarchical model
