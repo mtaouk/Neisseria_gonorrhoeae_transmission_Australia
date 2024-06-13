@@ -5,8 +5,6 @@ K. Higgs, Darren Y. J. Lee, Shivani Pasricha, Nasra Higgins, Danielle J.
 Ingle, Benjamin P. Howden, Marcus Y. Chen, Christopher K. Fairley, Eric
 P. F. Chow, Deborah A. Williamson
 
-## METHODS
-
 ## QC reads
 
 ### 1. Kraken
@@ -280,3 +278,9 @@ All LSD timed phylogenies can be found in
 
 The timed phylogenetic trees for each cluster were input into a Bayesian
 hierarchical model using this script. TO ADD.
+
+## Supplementary Analysis
+
+-   cgMLST scheme applied to a global dataset
+
+-   TBC
