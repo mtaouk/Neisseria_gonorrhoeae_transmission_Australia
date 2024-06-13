@@ -191,7 +191,7 @@ Molecular dating of ancestral events was performed using the
 least-squares dating (LSD) software (v0.3), with the maximum likelihood
 phylogeny generated in the above step used as input:
 
-`/home/taouk/lsd-0.3beta-master/src/lsd -d dates.tsv -i 95gapsMP.tree -c`
+`/home/taouk/lsd-0.3beta-master/src/lsd -d dates.tsv -i 95gapsMP.tree -c -r a`
 
 ### 12. Determine threshold for clustering
 
@@ -259,8 +259,7 @@ All ML phylogenies can be found in
 <a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/Timed_trees/ML_trees.zip">ML_trees.zip</a>.
 
 Molecular dating of ancestral events was performed on the resulting ML
-trees, using the least-squares dating (LSD) software (v0.3) with -r -c
-parameters and a rate of 4.5x10-6 substitutions per site as previously
+trees, using the least-squares dating (LSD) software (v0.3) with a rate of 4.5x10-6 substitutions per site as previously
 defined:
 
 `/home/taouk/lsd-0.3beta-master/src/lsd -d dates.txt -i group_14_ML.tree -c -r a -w rate.txt`
