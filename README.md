@@ -241,6 +241,10 @@ psuedoalignments as input:
 
 `run_gubbins.py --threads 10 full_alignments/group_14_snippy.fasta`
 
+For each cluster gubbins filtered alignment, a SNP alignment was generated:
+
+`snp-sites -c -o group_14_snippy_gubbins_SNPsites.fasta group_14_snippy_gubbins.fasta`
+
 ### 4. ML and timed phylogenies
 
 For each cluster whole genome pseudoalignment, the number of constant
@@ -253,7 +257,7 @@ were inferred using IQ-tree (v2.0.3), with the best-fitting nucleotide
 substitution model chosen based on the lowest BIC and the number of
 constant sites specified:
 
-`iqtree -s group_14_snippy_gubbins.fasta -B 1000 -T 60 -fconst 484048,535722,549723,494991`
+`iqtree -s group_14_snippy_gubbins_SNPsites.fasta -B 1000 -T 60 -fconst 484048,535722,549723,494991`
 
 All ML phylogenies can be found in
 <a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/Timed_trees/ML_trees.zip">ML_trees.zip</a>.
