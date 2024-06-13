@@ -221,7 +221,26 @@ A pseudoalignment of all genomes was generated:
 
 `snippy-core snippy/* --ref NCCP11945.fa`
 
-### 2. Subset alignments
+### 2. Whole genome ML phylogeny
+
+Recombination filtering was performed using Gubbins (v2.4.1) with default settings and the full Snippy psuedoalignments as input:
+
+`run_gubbins.py --threads 10 core.full.aln`
+
+Following Gubbins, a SNP alignment was generated using snp-sites (v1) and the Gubbins filtered alignment as input:
+
+`snp-sites -c -o core.full.Gubbins.SNPs.aln core.full.Gubbins.aln`
+
+The number of constant sites was also calculated using snp-sites (v1):
+
+`snp-sites -C core.full.aln`
+
+A ML phylogenetic tree was inferred using IQ-tree (v2.0.3), with the best-fitting nucleotide
+substitution model chosen based on the lowest BIC and the number of constant sites specified:
+
+`iqtree -s core.full.Gubbins.SNPs.aln -B 1000 -T 60 -fconst 484258,580068,533403,495503`
+
+### 3. Subset alignments
 
 Cluster whole genome pseudoalignments were subset from the entire
 dataset pseudoalignments for each of the previously defined cgMLST
@@ -230,10 +249,10 @@ of these isolates and their clusters can be found in
 <a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/Timed_trees/clustersover5.txt" title="clustersover5.txt">clustersover5.txt</a>.
 
 Note: Isolates were renamed to append the decimal date to each ID for
-<a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia?tab=readme-ov-file#5-bayesian-hierarchical-model">step
-5</a>.
+<a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia?tab=readme-ov-file#6-bayesian-hierarchical-model">step
+6</a>.
 
-### 3. Recombination filtering
+### 4. Recombination filtering
 
 Recombination filtering was performed using Gubbins (v2.4.1) with
 default settings for all clusters with the full whole genome
@@ -245,7 +264,7 @@ For each cluster gubbins filtered alignment, a SNP alignment was generated:
 
 `snp-sites -c -o group_14_snippy_gubbins_SNPsites.fasta group_14_snippy_gubbins.fasta`
 
-### 4. ML and timed phylogenies
+### 5. Cluster ML and timed phylogenies
 
 For each cluster whole genome pseudoalignment, the number of constant
 sites was calculated using snp-sites (v1):
@@ -277,7 +296,7 @@ date for each isolate can be found in
 All LSD timed phylogenies can be found in
 <a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/Timed_trees/LSD_trees.zip">LSD_trees.zip</a>.
 
-### 5. Bayesian hierarchical model
+### 6. Bayesian hierarchical model
 
 The timed phylogenetic trees for each cluster were input into a Bayesian
 hierarchical model using this script. TO ADD.
