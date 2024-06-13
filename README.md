@@ -93,6 +93,8 @@ Health Agency of Canada</a>:
 
 ### 1. Prepare schema
 
+It is recommended to prepare the schema for each new dataset. 
+
 A prodigal training file for *N. gonorrhoeae* was made using the
 NCCP11945 reference genome using prodigal (v.2.6.3):
 
@@ -137,7 +139,7 @@ Number of and percentage of uncalled genes per genome in the dataset.
 <a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/cgMLST/Results/presence_absence.csv">presence_absence.csv</a>:
 Gene presence/absence table. (1 present, 0 absent).
 
-### 4. cgMLST alleleic differences
+### 4. cgMLST allelic differences
 
 The cgMLST results table was transformed to a symmetrical distance
 matrix using cgmlst-dists:
