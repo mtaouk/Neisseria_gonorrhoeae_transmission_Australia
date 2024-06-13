@@ -1,9 +1,3 @@
----
-title: "desilva"
-author: "Mona Taouk"
-date: "2023-07-10"
-output: html_document
----
 
 ```{r message=FALSE, warning=FALSE}
 # Libraries
@@ -14,9 +8,6 @@ library(reshape2)
 library(scales)
 library(patchwork)
 library(ggbreak)
-
-# Set working directory
-setwd("~/Library/CloudStorage/OneDrive-TheUniversityofMelbourne/NG_transmission/deSilva/")
 ```
 
 ```{r message=FALSE, warning=FALSE}
