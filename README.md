@@ -281,6 +281,5 @@ hierarchical model using this script. TO ADD.
 
 ## Supplementary Analysis
 
--   cgMLST scheme applied to a global dataset
-
+-   cgMLST scheme applied to a global dataset: <a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/tree/main/Supplementary_analyses/cgMLST_method">cgMLST_method</a>.
 -   TBC
