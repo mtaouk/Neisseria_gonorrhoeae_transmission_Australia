@@ -279,7 +279,7 @@ All LSD timed phylogenies can be found in
 The timed phylogenetic trees for each cluster were input into a Bayesian
 hierarchical model using this script. TO ADD.
 
-## Supplementary Analysis
+## Supplementary Analyses
 
 -   cgMLST scheme applied to a global dataset: <a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/tree/main/Supplementary_analyses/cgMLST_method">cgMLST_method</a>.
 -   TBC
