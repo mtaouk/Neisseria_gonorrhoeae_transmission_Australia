@@ -93,7 +93,7 @@ Health Agency of Canada</a>:
 
 ### 1. Prepare schema
 
-It is recommended to prepare the schema for each new dataset. 
+It is recommended to prepare the schema for each new dataset.
 
 A prodigal training file for *N. gonorrhoeae* was made using the
 NCCP11945 reference genome using prodigal (v.2.6.3):
@@ -153,7 +153,7 @@ The values from this matrix were adjusted in
 <a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia?tab=readme-ov-file#12-determine-threshold-for-clustering">step
 12</a>.
 
-### 5. cgMLST alginment (only including 5,881 genomes)
+### 5. cgMLST alignment (only including 5,881 genomes)
 
 R Script to preprocess the data:
 <a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/cgMLST/cgMLST_alignment_part1.r">cgMLST_alignment_part1.r</a>
@@ -179,7 +179,7 @@ processed to create a 95% soft core using trimAl (v1.4.rev15):
 
 ### 10. Maximum likelihood phylogeny
 
-A maximum liklihood phylogenetic tree was generated using IQ-tree
+A maximum likelihood phylogenetic tree was generated using IQ-tree
 (v2.0.3):
 
 `iqtree -s stripped_alignment.fasta -B 1000 -T 40`
