@@ -257,6 +257,9 @@ constant sites specified:
 
 `iqtree -s group_14_snippy_gubbins.fasta -B 1000 -T 60 -fconst 484048,535722,549723,494991`
 
+All ML phylogenies can be found in
+`<a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/Timed_trees/ML_trees.zip"`{=html}ML_trees.zip</a>.
+
 Molecular dating of ancestral events was performed on the resulting ML
 trees, using the least-squares dating (LSD) software (v0.3) with -r -c
 parameters and a rate of 4.5x10-6 substitutions per site as previously
@@ -269,6 +272,9 @@ column and the date of collection in decimal format in another for each
 isolate. A separate file was generated for each cluster. The decimal
 date for each isolate can be found in
 <a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/Timed_trees/dates.txt" title="dates.txt">dates.txt</a>.
+
+All LSD timed phylogenies can be found in
+`<a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/Timed_trees/LSD_trees.zip"`{=html}LSD_trees.zip</a>.
 
 ### 5. Bayesian hierarchical model
 
