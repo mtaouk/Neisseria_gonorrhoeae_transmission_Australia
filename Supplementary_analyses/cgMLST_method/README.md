@@ -20,7 +20,7 @@ for each gene at each isolate can be found in
 Here we show the overall distribution of pairwise allelic differences
 across the De Silva genomes:
 
-Load libraries
+## Load libraries
 
 ```         
 # Libraries
@@ -32,6 +32,8 @@ library(scales)
 library(patchwork)
 library(ggbreak)
 ```
+
+## Read inputs and transform data
 
 The input matrix can be downloaded from
 [pairwise_distances_desilva_cgMLST.txt](https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/Supplementary_analyses/cgMLST_method/pairwise_distances_desilva_cgMLST.txt).
@@ -57,7 +59,7 @@ sum(is.na(cgMLST_melt))
   
 ```
 
-Plot the distribution of pairwise allelic differences
+## Plot the distribution of pairwise allelic differences
 
 ```         
 data_merged_density = data.frame(table(cgMLST_melt$dist))
@@ -75,8 +77,7 @@ ggplot(data_merged_density, aes(x=Var1, y=Freq)) +
   scale_y_continuous(labels = function(x) format(x, scientific = FALSE, big.mark = " "))
 ```
 
-Plot the distribution of pairwise allelic differences for the
-calibration isolates (within individual, within site)
+## Plot the distribution of pairwise allelic differences for the calibration isolates (within individual, within site)
 
 ```         
 
@@ -112,7 +113,7 @@ ggplot(cgMLST_melt_sum, aes(x=Var1, y=Freq, fill = factor(Var2, level = c("Withi
   scale_x_continuous(limits = c(0, 50))
 ```
 
-Generate clusters
+## Generate clusters
 
 ```         
 dist <- as.dist(cgMLST_matrix) 
