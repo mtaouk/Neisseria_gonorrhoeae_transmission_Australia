@@ -13,7 +13,9 @@ to accommodate missing data, with all other categories having complete
 data. In this supplementary analysis we used continuous MIC values for
 the phenotypic antimicrobial susceptibility profiles.
 
-The following R code was used with stats_data.csv as input.
+The following R code was used with
+s[tats_data.csv](https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/Supplementary_analyses/Odds_ratio/stats_data.csv)
+as input.
 
 The input spreadsheet lists persistence in a binary system where 1 is
 persistent and 0 is non persistent.
