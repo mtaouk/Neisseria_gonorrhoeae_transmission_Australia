@@ -113,6 +113,7 @@ ggplot(cgMLST_melt_sum, aes(x=Var1, y=Freq, fill = factor(Var2, level = c("Withi
   scale_fill_manual(values = c("#fdbb84", "#ef6548"), na.translate=FALSE)  +
   scale_x_continuous(limits = c(0, 50))
 ```
+![000039](https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/assets/90819350/2f7d8726-b90a-4065-b5ce-e29e2a7eed5a)
 
 ## Generate clusters
 
