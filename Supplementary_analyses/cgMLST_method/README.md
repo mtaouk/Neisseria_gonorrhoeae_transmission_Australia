@@ -76,6 +76,7 @@ ggplot(data_merged_density, aes(x=Var1, y=Freq)) +
   xlab("Pairwise allelic difference") +
   scale_y_continuous(labels = function(x) format(x, scientific = FALSE, big.mark = " "))
 ```
+![00001f](https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/assets/90819350/9646d68f-4e4b-4a69-afde-ac4299a9895e)
 
 ## Plot the distribution of pairwise allelic differences for the calibration isolates (within individual, within site)
 
