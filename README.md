@@ -222,8 +222,11 @@ persistent isolates and isolates were grouped as either decreased
 susceptibility or susceptible.
 
 The following code was used with
-<a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/Odds_rations/odds.csv" title="odds.csv">Threshold.Rmd</a>
+<a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/Odds_rations/odds_metadata.csv">odds_metadata.csv</a>
 as input.
+
+The input spreadsheet lists persistence in a binary system where 1 is
+persistent and 0 is non persistent.
 
 ```         
 library(tidyverse)
@@ -231,7 +234,7 @@ library(geepack)
 
 Metadata = read.table("odds.csv", header = TRUE, sep= ",")
 
-fit <- geeglm(formula = Status ~ Sex + AgeGroupSum + countif + PEN + TET +
+fit <- geeglm(formula = Persistence ~ Sex + AgeGroupSum + cluster_size + PEN + TET +
                 CTRIX + CIPRO + AZITH + Site_summary
                data = Metadata, 
                id = cluster, 
