@@ -1,3 +1,5 @@
+# GEE odds ratio model using continuous MIC variables
+
 To assess variables associated with cluster persistence, we applied a
 multivariable logistic regression model via generalised estimating
 equation (GEE) to calculate adjusted odds ratios using an independence
@@ -16,6 +18,8 @@ The following R code was used with stats_data.csv as input.
 The input spreadsheet lists persistence in a binary system where 1 is
 persistent and 0 is non persistent.
 
+## R code:
+
 ```         
 library(geepack)
 
@@ -26,7 +30,7 @@ fit3 <- geeglm(persistant ~ Sex+AgeGroup+Size+PEN+TET+CTRIX+CIPRO+AZITH, data = 
 summary(fit3) 
 ```
 
-The results are as follows:
+## Results:
 
 ```         
  Coefficients:
