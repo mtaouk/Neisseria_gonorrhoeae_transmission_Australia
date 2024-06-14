@@ -115,6 +115,8 @@ ggplot(cgMLST_melt_sum, aes(x=Var1, y=Freq, fill = factor(Var2, level = c("Withi
 ```
 ![000039](https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/assets/90819350/2f7d8726-b90a-4065-b5ce-e29e2a7eed5a)
 
+To determine an appropriate clustering threshold for the De Silva dataset we plotted the distribution of pairwise allelic differences of the within-individual pairs and within-site pairs of genomes, applying the same principle as for selecting the clustering threshold in our own dataset. All within-site pairs of genomes were between 0 and 3 allelic differences apart. While the within-individual pairs of genomes were between 0 and 944 allelic differences apart. However, the majority of within-individual pairs falling within the 0 to 7 range. This is comparable to our own results, where we also saw co-infections amongst our within-individual pairs, representing the high pairwise allelic differences. As the majority of the within-individual isolates fell below 7 pairwise allelic differences suggesting that it would be an appropriate threshold to use in this case. While the datasets and scheme are not identical, the same methods can be applied to any N. gonorrhoeae dataset to investigate transmission and a threshold can be applied based on available calibration isolates as done here, or a similar threshold of 7 pairwise allelic differences could be generalizable to other studies if no calibration isolates are available.
+
 ## Generate clusters
 
 ```         
@@ -127,6 +129,9 @@ hc_cut <- cutree(hc, h=7)
 #convert to dataframe
 hc_cut_df <- as.data.frame(hc_cut)
 ```
+
+When applying the threshold of 7 allelic differences as a threshold for single linkage hierarchical clustering to defining genomic transmission clusters 32 singletons (n = 1), 70 pairs (n = 2) and 46 clusters (n ≥ 3) were identified. ![Uploading image.png…]()
+
 
 The clustering results can be downloaded from
 [hc_cut.csv](https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/Supplementary_analyses/cgMLST_method/hc_cut.csv).
