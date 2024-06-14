@@ -295,33 +295,45 @@ The trimmed paired end reads were aligned to the NCCP11945 reference
 genome using Snippy (v4.3.5), requiring a minimum of ten supporting
 reads and a variant frequency of 0.9 or greater:
 
-`snippy --cpus 8 --minfrac 0.9 --mincov 10 --ref NCCP11945.fa --cleanup --outdir snippy/AUSMDU00008753 --prefix AUSMDU00008753 --R1 /home/taouk/NGtransmission/reads/AUSMDU00008753_1.fq.gz --R2 /home/taouk/NGtransmission/reads/AUSMDU00008753_2.fq.gz`
+```
+snippy --cpus 8 --minfrac 0.9 --mincov 10 --ref NCCP11945.fa --cleanup --outdir snippy/AUSMDU00008753 --prefix AUSMDU00008753 --R1 /home/taouk/NGtransmission/reads/AUSMDU00008753_1.fq.gz --R2 /home/taouk/NGtransmission/reads/AUSMDU00008753_2.fq.gz
+```
 
 A pseudoalignment of all genomes was generated:
 
-`snippy-core snippy/* --ref NCCP11945.fa`
+```
+snippy-core snippy/* --ref NCCP11945.fa
+```
 
 ### 2. Whole genome ML phylogeny
 
 Recombination filtering was performed using Gubbins (v2.4.1) with
 default settings and the full Snippy psuedoalignments as input:
 
-`run_gubbins.py --threads 10 core.full.aln`
+```
+run_gubbins.py --threads 10 core.full.aln
+```
 
 Following Gubbins, a SNP alignment was generated using snp-sites (v1)
 and the Gubbins filtered alignment as input:
 
-`snp-sites -c -o core.full.Gubbins.SNPs.aln core.full.Gubbins.aln`
+```
+snp-sites -c -o core.full.Gubbins.SNPs.aln core.full.Gubbins.aln
+```
 
 The number of constant sites was also calculated using snp-sites (v1):
 
-`snp-sites -C core.full.aln`
+```
+snp-sites -C core.full.aln
+```
 
 A ML phylogenetic tree was inferred using IQ-tree (v2.0.3), with the
 best-fitting nucleotide substitution model chosen based on the lowest
 BIC and the number of constant sites specified:
 
-`iqtree -s core.full.Gubbins.SNPs.aln -B 1000 -T 60 -fconst 484258,580068,533403,495503`
+```
+iqtree -s core.full.Gubbins.SNPs.aln -B 1000 -T 60 -fconst 484258,580068,533403,495503
+```
 
 ### 3. Subset alignments
 
@@ -341,26 +353,34 @@ Recombination filtering was performed using Gubbins (v2.4.1) with
 default settings for all clusters with the full whole genome
 psuedoalignments as input:
 
-`run_gubbins.py --threads 10 full_alignments/group_14_snippy.fasta`
+```
+run_gubbins.py --threads 10 full_alignments/group_14_snippy.fasta
+```
 
 For each cluster gubbins filtered alignment, a SNP alignment was
 generated:
 
-`snp-sites -c -o group_14_snippy_gubbins_SNPsites.fasta group_14_snippy_gubbins.fasta`
+```
+snp-sites -c -o group_14_snippy_gubbins_SNPsites.fasta group_14_snippy_gubbins.fasta
+```
 
 ### 5. Cluster ML and timed phylogenies
 
 For each cluster whole genome pseudoalignment, the number of constant
 sites was calculated using snp-sites (v1):
 
-`snp-sites -C group_14_snippy.fasta`
+```
+snp-sites -C group_14_snippy.fasta
+```
 
 For each cluster gubbins filtered SNP alignment, ML phylogenetic trees
 were inferred using IQ-tree (v2.0.3), with the best-fitting nucleotide
 substitution model chosen based on the lowest BIC and the number of
 constant sites specified:
 
-`iqtree -s group_14_snippy_gubbins_SNPsites.fasta -B 1000 -T 60 -fconst 484048,535722,549723,494991`
+```
+iqtree -s group_14_snippy_gubbins_SNPsites.fasta -B 1000 -T 60 -fconst 484048,535722,549723,494991
+```
 
 All ML phylogenies can be found in
 <a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/Timed_trees/ML_trees.zip">ML_trees.zip</a>.
@@ -369,7 +389,9 @@ Molecular dating of ancestral events was performed on the resulting ML
 trees, using the least-squares dating (LSD) software (v0.3) with a rate
 of 4.5x10-6 substitutions per site as previously defined:
 
-`/home/taouk/lsd-0.3beta-master/src/lsd -d dates.txt -i group_14_ML.tree -c -r a -w rate.txt`
+```
+/home/taouk/lsd-0.3beta-master/src/lsd -d dates.txt -i group_14_ML.tree -c -r a -w rate.txt
+```
 
 The dates.txt input is a tab separated file that has the IDs in one
 column and the date of collection in decimal format in another for each
