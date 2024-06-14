@@ -221,13 +221,15 @@ susceptibility except for ceftriaxone where there were no resistant
 persistent isolates and isolates were grouped as either decreased
 susceptibility or susceptible.
 
-The following code was used with XXX as input.
+The following code was used with
+<a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/Odds_rations/odds.csv" title="odds.csv">Threshold.Rmd</a>
+as input.
 
 ```         
 library(tidyverse)
 library(geepack)
 
-Metadata = read.table("Odds_metadata.csv", header = TRUE, sep= ",")
+Metadata = read.table("odds.csv", header = TRUE, sep= ",")
 
 fit <- geeglm(formula = Status ~ Sex + AgeGroupSum + countif + PEN + TET +
                 CTRIX + CIPRO + AZITH + Site_summary
