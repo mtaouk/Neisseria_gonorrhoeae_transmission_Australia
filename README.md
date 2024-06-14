@@ -222,7 +222,7 @@ persistent isolates and isolates were grouped as either decreased
 susceptibility or susceptible.
 
 The following code was used with
-<a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/Odds_rations/odds_metadata.csv">odds_metadata.csv</a>
+<a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/Odds_ratio/odds_metadata.csv">odds_metadata.csv</a>
 as input.
 
 The input spreadsheet lists persistence in a binary system where 1 is
@@ -349,5 +349,5 @@ hierarchical model using this script. TO ADD.
 -   cgMLST scheme applied to a global dataset:
     <a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/tree/main/Supplementary_analyses/cgMLST_method">cgMLST_method</a>.
 -   Odds ratios using continuous MIC variable:
-    <a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/tree/main/Supplementary_analyses/Odds_ratios">Odds_ratios</a>.
+    <a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/tree/main/Supplementary_analyses/Odds_ratio">Odds_ratio</a>.
 -   Pairwise SNP distances
