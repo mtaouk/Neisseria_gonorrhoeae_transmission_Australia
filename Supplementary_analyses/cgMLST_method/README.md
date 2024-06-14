@@ -130,7 +130,7 @@ hc_cut <- cutree(hc, h=7)
 hc_cut_df <- as.data.frame(hc_cut)
 ```
 
-When applying the threshold of 7 allelic differences as a threshold for single linkage hierarchical clustering to defining genomic transmission clusters 32 singletons (n = 1), 70 pairs (n = 2) and 46 clusters (n ≥ 3) were identified. ![Uploading image.png…]()
+When applying the threshold of 7 allelic differences as a threshold for single linkage hierarchical clustering to defining genomic transmission clusters 32 singletons (n = 1), 70 pairs (n = 2) and 46 clusters (n ≥ 3) were identified.
 
 
 The clustering results can be downloaded from
