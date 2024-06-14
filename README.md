@@ -223,11 +223,13 @@ A pseudoalignment of all genomes was generated:
 
 ### 2. Whole genome ML phylogeny
 
-Recombination filtering was performed using Gubbins (v2.4.1) with default settings and the full Snippy psuedoalignments as input:
+Recombination filtering was performed using Gubbins (v2.4.1) with
+default settings and the full Snippy psuedoalignments as input:
 
 `run_gubbins.py --threads 10 core.full.aln`
 
-Following Gubbins, a SNP alignment was generated using snp-sites (v1) and the Gubbins filtered alignment as input:
+Following Gubbins, a SNP alignment was generated using snp-sites (v1)
+and the Gubbins filtered alignment as input:
 
 `snp-sites -c -o core.full.Gubbins.SNPs.aln core.full.Gubbins.aln`
 
@@ -235,8 +237,9 @@ The number of constant sites was also calculated using snp-sites (v1):
 
 `snp-sites -C core.full.aln`
 
-A ML phylogenetic tree was inferred using IQ-tree (v2.0.3), with the best-fitting nucleotide
-substitution model chosen based on the lowest BIC and the number of constant sites specified:
+A ML phylogenetic tree was inferred using IQ-tree (v2.0.3), with the
+best-fitting nucleotide substitution model chosen based on the lowest
+BIC and the number of constant sites specified:
 
 `iqtree -s core.full.Gubbins.SNPs.aln -B 1000 -T 60 -fconst 484258,580068,533403,495503`
 
@@ -260,7 +263,8 @@ psuedoalignments as input:
 
 `run_gubbins.py --threads 10 full_alignments/group_14_snippy.fasta`
 
-For each cluster gubbins filtered alignment, a SNP alignment was generated:
+For each cluster gubbins filtered alignment, a SNP alignment was
+generated:
 
 `snp-sites -c -o group_14_snippy_gubbins_SNPsites.fasta group_14_snippy_gubbins.fasta`
 
@@ -282,8 +286,8 @@ All ML phylogenies can be found in
 <a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/Timed_trees/ML_trees.zip">ML_trees.zip</a>.
 
 Molecular dating of ancestral events was performed on the resulting ML
-trees, using the least-squares dating (LSD) software (v0.3) with a rate of 4.5x10-6 substitutions per site as previously
-defined:
+trees, using the least-squares dating (LSD) software (v0.3) with a rate
+of 4.5x10-6 substitutions per site as previously defined:
 
 `/home/taouk/lsd-0.3beta-master/src/lsd -d dates.txt -i group_14_ML.tree -c -r a -w rate.txt`
 
@@ -303,5 +307,8 @@ hierarchical model using this script. TO ADD.
 
 ## Supplementary Analyses
 
--   cgMLST scheme applied to a global dataset: <a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/tree/main/Supplementary_analyses/cgMLST_method">cgMLST_method</a>.
--   TBC
+-   cgMLST scheme applied to a global dataset:
+    <a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/tree/main/Supplementary_analyses/cgMLST_method">cgMLST_method</a>.
+-   Odds ratios using continuous MIC variable:
+    <a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/tree/main/Supplementary_analyses/Odds_ratios">Odds_ratios</a>.
+-   Pairwise SNP distances
