@@ -205,7 +205,41 @@ The data required for the code can be downloaded from
 
 ## Odds ratios
 
-Add in the R code and input files when finalised.
+To assess variables associated with cluster persistence, we applied a
+multivariable logistic regression model via generalised estimating
+equation (GEE) to calculate adjusted odds ratios using an independence
+model with geepack (v1.3.9). The following specified variables were
+included in the models: age group, sex, size of transmission cluster,
+phenotypic resistance to penicillin, phenotypic resistance to
+tetracycline, phenotypic resistance to ciprofloxacin, phenotypic
+resistance or decreased susceptibility to ceftriaxone and phenotypic
+resistance to azithromycin. For sex, an ‘unknown’ category was included
+to accommodate missing data, with all other categories having complete
+data. For antimicrobial resistance phenotype, isolates were grouped
+binarily as either resistant or susceptible/less susceptible/decreased
+susceptibility except for ceftriaxone where there were no resistant
+persistent isolates and isolates were grouped as either decreased
+susceptibility or susceptible.
+
+The following code was used with XXX as input.
+
+```         
+library(tidyverse)
+library(geepack)
+
+Metadata = read.table("Odds_metadata.csv", header = TRUE, sep= ",")
+
+fit <- geeglm(formula = Status ~ Sex + AgeGroupSum + countif + PEN + TET +
+                CTRIX + CIPRO + AZITH + Site_summary
+               data = Metadata, 
+               id = cluster, 
+               family = binomial, 
+               corstr = "independence")
+fit
+summary(fit)
+
+broom::tidy(x = fit, exp=T, conf.int = TRUE)
+```
 
 ## Whole genome alignments
 
