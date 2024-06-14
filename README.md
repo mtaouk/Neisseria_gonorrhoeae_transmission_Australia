@@ -66,7 +66,7 @@ shovill --outdir assemblies/AUSMDU00008753 --R1 /home/taouk/NGtransmission/reads
 
 The names of each genome's contigs were changed from the default:
 
-```
+```         
 for i in \$(cat IDs.txt); do mv \${i}/contigs.fa \${i}/\${i}.contigs.fa;
 done
 ```
@@ -75,7 +75,7 @@ done
 
 The number of contigs for each genome was calculated:
 
-```
+```         
 grep -c "^>" */*contigs.fa > contigs_all.txt
 ```
 
@@ -86,7 +86,7 @@ grep -c "^>" */*contigs.fa > contigs_all.txt
 MLSTs were identified using mlst (v2.23.0; PubMLST database accessed May
 5th 2023):
 
-```
+```         
 mlst --legacy --scheme neisseria assemblies/*/*.contigs.fa > mlst_results.txt
 ```
 
@@ -95,7 +95,7 @@ mlst --legacy --scheme neisseria assemblies/*/*.contigs.fa > mlst_results.txt
 NG‐MASTs were assigned using NGmaster (1.0.0; NG-MAST v2.0 PubMLST
 database accessed May 5th, 2023):
 
-```
+```         
 ngmaster assemblies/*/*.contigs.fa > ngmast_results.txt
 ```
 
@@ -108,7 +108,7 @@ alleles and profiles obtained from the database hosted by the
 <a href="https://ngstar.canada.ca/alleles/loci_selection?lang=en" title="Public Health Agency of Canada">Public
 Health Agency of Canada</a>:
 
-```
+```         
 python3 /home/taouk/pyngSTar/pyngSTar.py -f -a -i assemblies/*/*.contigs.fa -p /home/taouk/pyngSTar/pyngSTarDB/ > ngstar_results.txt
 ```
 
@@ -121,7 +121,7 @@ It is recommended to prepare the schema for each new dataset.
 A prodigal training file for *N. gonorrhoeae* was made using the
 NCCP11945 reference genome using prodigal (v.2.6.3):
 
-```
+```         
 prodigal -i NCCP11945.fa -t neisseria_gonorrhoeae.trn -p single
 ```
 
@@ -134,7 +134,7 @@ et al.</a> was downloaded from
 <a href="https://pubmlst.org/bigsdb?db=pubmlst_neisseria_seqdef&page=schemeInfo&scheme_id=62" title="PubMLST">PubMLST</a>
 and prepared for use using chewBBACA (v2.8.5):
 
-```
+```         
 chewBBACA.py PrepExternalSchema -i scheme_directory -o scheme_prepped --ptf /home/taouk/NGtransmission/cgMLST/neisseria_gonorrhoeae.trn --cpu 50 --st 0.3
 ```
 
@@ -143,7 +143,7 @@ chewBBACA.py PrepExternalSchema -i scheme_directory -o scheme_prepped --ptf /hom
 Allele calling was performed on all *N. gonorrhoeae* genomes, using the
 assemblies as input:
 
-```
+```         
 chewBBACA.py AlleleCall -i paths_to_assemblies.txt -g scheme_prepped --ptf /home/taouk/NGtransmission/cgMLST/neisseria_gonorrhoeae.trn -o results --cpu 50
 ```
 
@@ -152,7 +152,7 @@ chewBBACA.py AlleleCall -i paths_to_assemblies.txt -g scheme_prepped --ptf /home
 The schema was refined to only include genes present in 95% of genomes
 in the dataset:
 
-```
+```         
 chewBBACA.py ExtractCgMLST -i results/results_20211011T232621/results_alleles.tsv --r results/results_20220602T014232/RepeatedLoci.txt -o evaluate95 --t 0.95
 ```
 
@@ -175,7 +175,7 @@ Gene presence/absence table. (1 present, 0 absent).
 The cgMLST results table was transformed to a symmetrical distance
 matrix using cgmlst-dists:
 
-```
+```         
 cgmlst-dists results/evaluate/cgMLST.tsv > cgMLST_matrix.txt
 ```
 
@@ -208,7 +208,7 @@ together. This file will be \~1.7GB.
 The alignment of 5,881 genomes representing a unique infection each, was
 processed to create a 95% soft core using trimAl (v1.4.rev15):
 
-```
+```         
 trimal -in unique_pass.aln -out stripped_alignment.fasta -gt 0.05 -threads 40
 ```
 
@@ -217,7 +217,7 @@ trimal -in unique_pass.aln -out stripped_alignment.fasta -gt 0.05 -threads 40
 A maximum likelihood phylogenetic tree was generated using IQ-tree
 (v2.0.3):
 
-```
+```         
 iqtree -s stripped_alignment.fasta -B 1000 -T 40
 ```
 
@@ -230,7 +230,7 @@ Molecular dating of ancestral events was performed using the
 least-squares dating (LSD) software (v0.3), with the maximum likelihood
 phylogeny generated in the above step used as input:
 
-```
+```         
 /home/taouk/lsd-0.3beta-master/src/lsd -d dates.tsv -i 95gapsMP.tree -c -r a
 ```
 
@@ -275,16 +275,9 @@ library(geepack)
 
 Metadata = read.table("odds.csv", header = TRUE, sep= ",")
 
-fit <- geeglm(formula = Persistence ~ Sex + AgeGroupSum + cluster_size + PEN + TET +
-                CTRIX + CIPRO + AZITH + Site_summary
-               data = Metadata, 
-               id = cluster, 
-               family = binomial, 
-               corstr = "independence")
-fit
-summary(fit)
+fit <- geeglm(formula = Persistence ~ Sex + AgeGroupSum + cluster_size + PEN + TET + CTRIX + CIPRO + AZITH, data = Metadata, id = cluster, family = binomial, corstr = "independence")
 
-broom::tidy(x = fit, exp=T, conf.int = TRUE)
+fit
 ```
 
 ## Whole genome alignments
@@ -295,13 +288,13 @@ The trimmed paired end reads were aligned to the NCCP11945 reference
 genome using Snippy (v4.3.5), requiring a minimum of ten supporting
 reads and a variant frequency of 0.9 or greater:
 
-```
+```         
 snippy --cpus 8 --minfrac 0.9 --mincov 10 --ref NCCP11945.fa --cleanup --outdir snippy/AUSMDU00008753 --prefix AUSMDU00008753 --R1 /home/taouk/NGtransmission/reads/AUSMDU00008753_1.fq.gz --R2 /home/taouk/NGtransmission/reads/AUSMDU00008753_2.fq.gz
 ```
 
 A pseudoalignment of all genomes was generated:
 
-```
+```         
 snippy-core snippy/* --ref NCCP11945.fa
 ```
 
@@ -310,20 +303,20 @@ snippy-core snippy/* --ref NCCP11945.fa
 Recombination filtering was performed using Gubbins (v2.4.1) with
 default settings and the full Snippy psuedoalignments as input:
 
-```
+```         
 run_gubbins.py --threads 10 core.full.aln
 ```
 
 Following Gubbins, a SNP alignment was generated using snp-sites (v1)
 and the Gubbins filtered alignment as input:
 
-```
+```         
 snp-sites -c -o core.full.Gubbins.SNPs.aln core.full.Gubbins.aln
 ```
 
 The number of constant sites was also calculated using snp-sites (v1):
 
-```
+```         
 snp-sites -C core.full.aln
 ```
 
@@ -331,7 +324,7 @@ A ML phylogenetic tree was inferred using IQ-tree (v2.0.3), with the
 best-fitting nucleotide substitution model chosen based on the lowest
 BIC and the number of constant sites specified:
 
-```
+```         
 iqtree -s core.full.Gubbins.SNPs.aln -B 1000 -T 60 -fconst 484258,580068,533403,495503
 ```
 
@@ -353,14 +346,14 @@ Recombination filtering was performed using Gubbins (v2.4.1) with
 default settings for all clusters with the full whole genome
 psuedoalignments as input:
 
-```
+```         
 run_gubbins.py --threads 10 full_alignments/group_14_snippy.fasta
 ```
 
 For each cluster gubbins filtered alignment, a SNP alignment was
 generated:
 
-```
+```         
 snp-sites -c -o group_14_snippy_gubbins_SNPsites.fasta group_14_snippy_gubbins.fasta
 ```
 
@@ -369,7 +362,7 @@ snp-sites -c -o group_14_snippy_gubbins_SNPsites.fasta group_14_snippy_gubbins.f
 For each cluster whole genome pseudoalignment, the number of constant
 sites was calculated using snp-sites (v1):
 
-```
+```         
 snp-sites -C group_14_snippy.fasta
 ```
 
@@ -378,7 +371,7 @@ were inferred using IQ-tree (v2.0.3), with the best-fitting nucleotide
 substitution model chosen based on the lowest BIC and the number of
 constant sites specified:
 
-```
+```         
 iqtree -s group_14_snippy_gubbins_SNPsites.fasta -B 1000 -T 60 -fconst 484048,535722,549723,494991
 ```
 
@@ -389,7 +382,7 @@ Molecular dating of ancestral events was performed on the resulting ML
 trees, using the least-squares dating (LSD) software (v0.3) with a rate
 of 4.5x10-6 substitutions per site as previously defined:
 
-```
+```         
 /home/taouk/lsd-0.3beta-master/src/lsd -d dates.txt -i group_14_ML.tree -c -r a -w rate.txt
 ```
 
