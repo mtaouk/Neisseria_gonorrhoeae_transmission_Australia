@@ -275,7 +275,11 @@ library(geepack)
 
 Metadata = read.table("odds.csv", header = TRUE, sep= ",")
 
-fit <- geeglm(formula = Persistence ~ Sex + AgeGroupSum + cluster_size + PEN + TET + CTRIX + CIPRO + AZITH, data = Metadata, id = cluster, family = binomial, corstr = "independence")
+fit <- geeglm(formula = Persistence ~ Sex + AgeGroupSum + cluster_size + PEN + TET + CTRIX + CIPRO + AZITH, 
+        data = Metadata, 
+        id = cluster, 
+        family = binomial, 
+        corstr = "independence")
 
 fit
 ```
