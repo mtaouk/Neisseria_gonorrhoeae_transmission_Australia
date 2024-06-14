@@ -12,12 +12,16 @@ P. F. Chow, Deborah A. Williamson
 Trimmed paired end reads for each genome were input into Kraken2
 (v2.1.1) to investigate for species contamination:
 
-`for i in $(cat IDs.txt); do kraken2 --db /home/linuxbrew/db/kraken2/pluspf --gzip-compressed --paired /home/taouk/NGtransmission/reads/${i}_1.fq.gz /home/taouk/NGtransmission/reads/${i}_2.fq.gz --report ${i}.kraken.txt; done`
+```
+for i in $(cat IDs.txt); do kraken2 --db /home/linuxbrew/db/kraken2/pluspf --gzip-compressed --paired /home/taouk/NGtransmission/reads/${i}_1.fq.gz /home/taouk/NGtransmission/reads/${i}_2.fq.gz --report ${i}.kraken.txt; done
+```
 
 The top species match and percentage were extracted from each result
 file and summarised:
 
-`grep -m1 -P "\tS\t" *.txt | sort -k2nr | sed 's/.txt: /\t/' > kraken_results.txt`
+````
+grep -m1 -P "\tS\t" *.txt | sort -k2nr | sed 's/.txt: /\t/' > kraken_results.txt
+```
 
 ### 2. Sequencing depth
 
@@ -26,18 +30,26 @@ reference genome (GenBank accession NC_011035.1) using Minimap2
 (v2.17-r941) and Samtools (v1.10, using HTSlib v1.10.2) to calculate the
 number of reads aligning to the reference genome:
 
-`minimap2 -t10 -ax sr NCCP11945.fa AUSMDU00008753_1.fq.gz AUSMDU00008753_2.fq.gz | samtools fastq -f 2 - | grep -c "^@" > AUSMDU00008753_count.txt`
+```
+minimap2 -t10 -ax sr NCCP11945.fa AUSMDU00008753_1.fq.gz AUSMDU00008753_2.fq.gz | samtools fastq -f 2 - | grep -c "^@" > AUSMDU00008753_count.txt
+```
 
 The outputs were combined:
 
-`grep "" *_count.txt | sed 's/_count.txt:/\t/' > test.txt`
+```
+grep "" *_count.txt | sed 's/_count.txt:/\t/' > test.txt
+```
 
 The average read length for each genome was calculated using fq
 (v0.11.0) and extracted from the results:
 
-`fq --ref NCCP11945.fa AUSMDU00008753_1.fq.gz AUSMDU00008753_2.fq.gz > AUSMDU00008753.yield.tab`
+```
+fq --ref NCCP11945.fa AUSMDU00008753_1.fq.gz AUSMDU00008753_2.fq.gz > AUSMDU00008753.yield.tab
+```
 
-`grep -m1 -P "AvgLen" *.yield.tab | sort -k2nr > yield.all3.txt`
+```
+grep -m1 -P "AvgLen" *.yield.tab | sort -k2nr > yield.all3.txt
+```
 
 The average read depth was calculated as follows: (number of reads
 mapping to reference \* average read length)/reference genome length
