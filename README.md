@@ -12,14 +12,14 @@ P. F. Chow, Deborah A. Williamson
 Trimmed paired end reads for each genome were input into Kraken2
 (v2.1.1) to investigate for species contamination:
 
-```
+```         
 for i in $(cat IDs.txt); do kraken2 --db /home/linuxbrew/db/kraken2/pluspf --gzip-compressed --paired /home/taouk/NGtransmission/reads/${i}_1.fq.gz /home/taouk/NGtransmission/reads/${i}_2.fq.gz --report ${i}.kraken.txt; done
 ```
 
 The top species match and percentage were extracted from each result
 file and summarised:
 
-````
+```         
 grep -m1 -P "\tS\t" *.txt | sort -k2nr | sed 's/.txt: /\t/' > kraken_results.txt
 ```
 
@@ -30,24 +30,24 @@ reference genome (GenBank accession NC_011035.1) using Minimap2
 (v2.17-r941) and Samtools (v1.10, using HTSlib v1.10.2) to calculate the
 number of reads aligning to the reference genome:
 
-```
+```         
 minimap2 -t10 -ax sr NCCP11945.fa AUSMDU00008753_1.fq.gz AUSMDU00008753_2.fq.gz | samtools fastq -f 2 - | grep -c "^@" > AUSMDU00008753_count.txt
 ```
 
 The outputs were combined:
 
-```
+```         
 grep "" *_count.txt | sed 's/_count.txt:/\t/' > test.txt
 ```
 
 The average read length for each genome was calculated using fq
 (v0.11.0) and extracted from the results:
 
-```
+```         
 fq --ref NCCP11945.fa AUSMDU00008753_1.fq.gz AUSMDU00008753_2.fq.gz > AUSMDU00008753.yield.tab
 ```
 
-```
+```         
 grep -m1 -P "AvgLen" *.yield.tab | sort -k2nr > yield.all3.txt
 ```
 
@@ -60,17 +60,24 @@ mapping to reference \* average read length)/reference genome length
 
 *De novo* genome assemblies were generated using Shovill (v1.1.0):
 
-`shovill --outdir assemblies/AUSMDU00008753 --R1 /home/taouk/NGtransmission/reads/AUSMDU00008753_1.fq.gz --R2 /home/taouk/NGtransmission/reads/AUSMDU00008753_2.fq.gz`
+```         
+shovill --outdir assemblies/AUSMDU00008753 --R1 /home/taouk/NGtransmission/reads/AUSMDU00008753_1.fq.gz --R2 /home/taouk/NGtransmission/reads/AUSMDU00008753_2.fq.gz
+```
 
 The names of each genome's contigs were changed from the default:
 
-`for i in $(cat IDs.txt); do mv ${i}/contigs.fa ${i}/${i}.contigs.fa; done`
+```
+for i in \$(cat IDs.txt); do mv \${i}/contigs.fa \${i}/\${i}.contigs.fa;
+done
+```
 
 ### 2. Number of contigs
 
 The number of contigs for each genome was calculated:
 
-`grep -c "^>" */*contigs.fa > contigs_all.txt`
+```
+grep -c "^>" */*contigs.fa > contigs_all.txt
+```
 
 ## Genotyping
 
@@ -79,14 +86,18 @@ The number of contigs for each genome was calculated:
 MLSTs were identified using mlst (v2.23.0; PubMLST database accessed May
 5th 2023):
 
-`mlst --legacy --scheme neisseria assemblies/*/*.contigs.fa > mlst_results.txt`
+```
+mlst --legacy --scheme neisseria assemblies/*/*.contigs.fa > mlst_results.txt
+```
 
 ### 2. NG-MAST
 
 NG‐MASTs were assigned using NGmaster (1.0.0; NG-MAST v2.0 PubMLST
 database accessed May 5th, 2023):
 
-`ngmaster assemblies/*/*.contigs.fa > ngmast_results.txt`
+```
+ngmaster assemblies/*/*.contigs.fa > ngmast_results.txt
+```
 
 ### 3. NG-STAR
 
@@ -97,7 +108,9 @@ alleles and profiles obtained from the database hosted by the
 <a href="https://ngstar.canada.ca/alleles/loci_selection?lang=en" title="Public Health Agency of Canada">Public
 Health Agency of Canada</a>:
 
-`python3 /home/taouk/pyngSTar/pyngSTar.py -f -a -i assemblies/*/*.contigs.fa -p /home/taouk/pyngSTar/pyngSTarDB/ > ngstar_results.txt`
+```
+python3 /home/taouk/pyngSTar/pyngSTar.py -f -a -i assemblies/*/*.contigs.fa -p /home/taouk/pyngSTar/pyngSTarDB/ > ngstar_results.txt
+```
 
 ## cgMLST
 
@@ -108,7 +121,9 @@ It is recommended to prepare the schema for each new dataset.
 A prodigal training file for *N. gonorrhoeae* was made using the
 NCCP11945 reference genome using prodigal (v.2.6.3):
 
-`prodigal -i NCCP11945.fa -t neisseria_gonorrhoeae.trn -p single`
+```
+prodigal -i NCCP11945.fa -t neisseria_gonorrhoeae.trn -p single
+```
 
 Training file:
 <a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/cgMLST/neisseria_gonorrhoeae.trn" title="neisseria_gonorrhoeae.trn">neisseria_gonorrhoeae.trn</a>.
@@ -119,21 +134,27 @@ et al.</a> was downloaded from
 <a href="https://pubmlst.org/bigsdb?db=pubmlst_neisseria_seqdef&page=schemeInfo&scheme_id=62" title="PubMLST">PubMLST</a>
 and prepared for use using chewBBACA (v2.8.5):
 
-`chewBBACA.py PrepExternalSchema -i scheme_directory -o scheme_prepped --ptf /home/taouk/NGtransmission/cgMLST/neisseria_gonorrhoeae.trn --cpu 50 --st 0.3`
+```
+chewBBACA.py PrepExternalSchema -i scheme_directory -o scheme_prepped --ptf /home/taouk/NGtransmission/cgMLST/neisseria_gonorrhoeae.trn --cpu 50 --st 0.3
+```
 
 ### 2. Allele calling
 
 Allele calling was performed on all *N. gonorrhoeae* genomes, using the
 assemblies as input:
 
-`chewBBACA.py AlleleCall -i paths_to_assemblies.txt -g scheme_prepped --ptf /home/taouk/NGtransmission/cgMLST/neisseria_gonorrhoeae.trn -o results --cpu 50`
+```
+chewBBACA.py AlleleCall -i paths_to_assemblies.txt -g scheme_prepped --ptf /home/taouk/NGtransmission/cgMLST/neisseria_gonorrhoeae.trn -o results --cpu 50
+```
 
 ### 3. Refining schema
 
 The schema was refined to only include genes present in 95% of genomes
 in the dataset:
 
-`chewBBACA.py ExtractCgMLST -i results/results_20211011T232621/results_alleles.tsv --r results/results_20220602T014232/RepeatedLoci.txt -o evaluate95 --t 0.95`
+```
+chewBBACA.py ExtractCgMLST -i results/results_20211011T232621/results_alleles.tsv --r results/results_20220602T014232/RepeatedLoci.txt -o evaluate95 --t 0.95
+```
 
 cgMLST allele calling final results:
 
@@ -154,7 +175,9 @@ Gene presence/absence table. (1 present, 0 absent).
 The cgMLST results table was transformed to a symmetrical distance
 matrix using cgmlst-dists:
 
-`cgmlst-dists results/evaluate/cgMLST.tsv > cgMLST_matrix.txt`
+```
+cgmlst-dists results/evaluate/cgMLST.tsv > cgMLST_matrix.txt
+```
 
 Resulting matrix:
 <a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/cgMLST/Results/cgMLST_matrix.csv.zip">cgMLST_matrix.csv.zip</a>.
@@ -185,14 +208,18 @@ together. This file will be \~1.7GB.
 The alignment of 5,881 genomes representing a unique infection each, was
 processed to create a 95% soft core using trimAl (v1.4.rev15):
 
-`trimal -in unique_pass.aln -out stripped_alignment.fasta -gt 0.05 -threads 40`
+```
+trimal -in unique_pass.aln -out stripped_alignment.fasta -gt 0.05 -threads 40
+```
 
 ### 10. Maximum likelihood phylogeny
 
 A maximum likelihood phylogenetic tree was generated using IQ-tree
 (v2.0.3):
 
-`iqtree -s stripped_alignment.fasta -B 1000 -T 40`
+```
+iqtree -s stripped_alignment.fasta -B 1000 -T 40
+```
 
 The best-fitting nucleotide substitution model based on the lowest
 Bayesian Information Criterion (BIC) was GTR+I+R10.
@@ -203,7 +230,9 @@ Molecular dating of ancestral events was performed using the
 least-squares dating (LSD) software (v0.3), with the maximum likelihood
 phylogeny generated in the above step used as input:
 
-`/home/taouk/lsd-0.3beta-master/src/lsd -d dates.tsv -i 95gapsMP.tree -c -r a`
+```
+/home/taouk/lsd-0.3beta-master/src/lsd -d dates.tsv -i 95gapsMP.tree -c -r a
+```
 
 ### 12. Determine threshold for clustering
 
@@ -233,7 +262,7 @@ susceptibility except for ceftriaxone where there were no resistant
 persistent isolates and isolates were grouped as either decreased
 susceptibility or susceptible.
 
-The following code was used with
+The following R code was used with
 <a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/Odds_ratio/odds_metadata.csv">odds_metadata.csv</a>
 as input.
 
