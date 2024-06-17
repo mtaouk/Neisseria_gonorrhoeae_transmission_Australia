@@ -27,9 +27,12 @@ library(geepack)
 
 Metadata = read.table("stats_data.csv", header = TRUE, sep= ",")
 
-fit3 <- geeglm(persistant ~ Sex+AgeGroup+Size+PEN+TET+CTRIX+CIPRO+AZITH, data = Metadata, id = Cluster, family = binomial, corstr = "independence") 
+fit2 <- geeglm(persistant ~ Sex+AgeGroup+Size+PEN+TET+CTRIX+CIPRO+AZITH, data = Metadata, id = Cluster, family = binomial, corstr = "independence") 
 
-summary(fit3) 
+summary(fit2) 
+
+broom::tidy(x = fit2, exp=T, conf.int = T)
+
 ```
 
 ## Results:
@@ -60,7 +63,29 @@ Estimated Scale Parameters:
 
             Estimate Std.err
 (Intercept)   0.6458    2.57
-Number of clusters:   31  Maximum cluster size: 709 
+Number of clusters:   31  Maximum cluster size: 709
+```
+
+```
+# A tibble: 15 × 7
+   term             estimate std.error statistic    p.value  conf.low conf.high
+   <chr>               <dbl>     <dbl>     <dbl>      <dbl>     <dbl>     <dbl>
+ 1 (Intercept)        0.0213   1.90       4.12   0.0423      0.000519     0.875
+ 2 SexM               0.342    0.514      4.36   0.0368      0.125        0.936
+ 3 SexOther/Unknown   0.164    0.700      6.66   0.00986     0.0416       0.647
+ 4 AgeGroup20-29      0.717    0.376      0.784  0.376       0.343        1.50 
+ 5 AgeGroup30-39      0.682    0.336      1.29   0.255       0.353        1.32 
+ 6 AgeGroup40-49      0.551    0.467      1.63   0.202       0.220        1.38 
+ 7 AgeGroup50-59      0.493    0.487      2.11   0.147       0.190        1.28 
+ 8 AgeGroup60-69      0.912    0.683      0.0182 0.893       0.239        3.48 
+ 9 AgeGroup70-79      0.671    1.38       0.0835 0.773       0.0448      10.0  
+10 Size               1.01     0.00600    5.15   0.0232      1.00         1.03 
+11 PENSUS            13.3      0.933      7.69   0.00555     2.13        82.7  
+12 TETSUS             2.36     0.636      1.82   0.178       0.678        8.20 
+13 CTRIXSUS           0.170    1.10       2.57   0.109       0.0195       1.48 
+14 CIPROSUS           5.32     1.01       2.73   0.0985      0.733       38.6  
+15 AZITHSUS         101.       0.960     23.1    0.00000150 15.4        665.
+
 ```
 
 We see that sex and size of cluster are still associated with
