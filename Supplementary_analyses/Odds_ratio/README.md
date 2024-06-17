@@ -102,7 +102,7 @@ tetracycline, phenotypic resistance to ciprofloxacin, phenotypic
 resistance or decreased susceptibility to ceftriaxone and phenotypic
 resistance to azithromycin. For sex, an ‘unknown’ category was included
 to accommodate missing data, with all other categories having complete
-data. In this supplementary analysis we used, isolates were grouped binarily as either phenotypically resistant/less susceptible/decreased susceptibility or susceptible 
+data. In this supplementary analysis isolates were grouped binarily as either phenotypically resistant/less susceptible/decreased susceptibility or susceptible 
 
 The following R code was used with
 [stats_data2.csv](https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/Supplementary_analyses/Odds_ratio/stats_data2.csv)
