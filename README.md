@@ -1,4 +1,4 @@
-# Longitudinal Genomic Analysis of *Neisseria gonorrhoeae* Transmission Dynamics in Australia
+![image](https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/assets/90819350/92d1ece0-d1b7-4431-99e6-d8545ee15f91)# Longitudinal Genomic Analysis of *Neisseria gonorrhoeae* Transmission Dynamics in Australia
 
 Mona L. Taouk, George Taiaroa, Sebastian Duchene, Soo Jen Low, Charlie
 K. Higgs, Darren Y. J. Lee, Shivani Pasricha, Nasra Higgins, Danielle J.
@@ -281,7 +281,26 @@ fit <- geeglm(formula = Persistence ~ Sex + AgeGroupSum + cluster_size + PEN + T
         family = binomial, 
         corstr = "independence")
 
-fit
+broom::tidy(x = fit, exp=T, conf.int = TRUE)
+```
+Results:
+```
+  term                 estimate std.error statistic   p.value   conf.low conf.high
+   <chr>                   <dbl>     <dbl>     <dbl>     <dbl>      <dbl>     <dbl>
+ 1 "(Intercept)"         0.00386   2.18        6.47  0.0110     0.0000534     0.279
+ 2 "SexB"                2.91      0.448       5.70  0.0170     1.21          7.00 
+ 3 "SexOther"            0.749     0.704       0.169 0.681      0.189         2.97 
+ 4 "SexUnknown"          0.111     1.86        1.39  0.239      0.00289       4.29 
+ 5 "AgeGroupSum20-29"    0.682     0.392       0.957 0.328      0.316         1.47 
+ 6 "AgeGroupSum30-39"    0.616     0.337       2.07  0.151      0.318         1.19 
+ 7 "AgeGroupSum40-49"    0.483     0.458       2.52  0.113      0.197         1.19 
+ 8 "AgeGroupSum\xb350"   0.458     0.504       2.41  0.121      0.171         1.23 
+ 9 "countif"             1.02      0.00801     4.82  0.0281     1.00          1.03 
+10 "PENSUS"              2.71      1.22        0.669 0.413      0.249        29.5  
+11 "TETSUS"              1.80      0.928       0.403 0.525      0.292        11.1  
+12 "CTRIXSUS"            0.130     1.07        3.62  0.0570     0.0159        1.06 
+13 "CIPROSUS"            2.62      1.07        0.811 0.368      0.323        21.2  
+14 "AZITHSUS"          126.        1.16       17.3   0.0000326 12.9        1238.
 ```
 
 ## Whole genome alignments
