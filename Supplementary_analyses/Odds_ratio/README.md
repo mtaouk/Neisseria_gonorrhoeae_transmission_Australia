@@ -112,7 +112,7 @@ persistent and 0 is non persistent.
 ## R code:
 
 ```         
-Metadata2 = read.table("Odds_data2.csv", header = TRUE, sep= ",")
+Metadata2 = read.table("stats_data2.csv", header = TRUE, sep= ",")
 
 fit3 <- geeglm(persistant ~ Sex+AgeGroup+Size+PEN+TET+CTRIX+CIPRO+AZITH, data = Metadata2, id = Cluster, family = binomial, corstr = "independence") 
 
