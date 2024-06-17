@@ -20,6 +20,8 @@ as input.
 The input spreadsheet lists persistence in a binary system where 1 is
 persistent and 0 is non persistent.
 
+For the phenotypic antimicrobial suseptibility profiles, each breakpoint has been assigned a value from 1 to 11 based on the antibiotic.
+
 ## R code:
 
 ```         
