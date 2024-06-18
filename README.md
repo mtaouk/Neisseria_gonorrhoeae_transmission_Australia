@@ -439,11 +439,11 @@ supplementary analyses are included in this GitHub. All supplementary
 analyses can be found in
 <https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/tree/main#>[:\~:text=Supplementary_analyses](https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/tree/main#:~:text=Supplementary_analyses).
 
--   `<a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/tree/main/Supplementary_analyses/cgMLST_method"`{=html}Supplementary_analyses/cgMLST_method</a>:
+-   <a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/tree/main/Supplementary_analyses/cgMLST_method">Supplementary_analyses/cgMLST_method</a>:
     Using cgMLST to define transmission groups in another publicly
     available international *N. gonorrheoae* dataset.
--   `<a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/tree/main/Supplementary_analyses/Odds_ratio"`{=html}Supplementary_analyses/Odds_ratio</a>:
+-   <a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/tree/main/Supplementary_analyses/Odds_ratio">Supplementary_analyses/Odds_ratio</a>:
     Exploring alternate odds ratio models.
--   `<a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/tree/main/Supplementary_analyses/SNP_alignment"`{=html}Supplementary_analyses/SNP_alignment</a>:
+-   <a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/tree/main/Supplementary_analyses/SNP_alignment">Supplementary_analyses/SNP_alignment</a>:
 -   Comparing the use of a traditional strict core alignment for
     phylogeny and clustering compared to cgMLST
