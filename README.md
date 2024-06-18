@@ -436,7 +436,7 @@ hierarchical model using this script. TO ADD.
 
 In addition to methods used in the main manuscript and analyses,
 supplementary analyses are included in this GitHub. All supplementary
-analyses can be found in <a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/tree/main/Supplementary_analyses">Supplementary_analyses</a>.
+analyses can be found in <a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/tree/main/Supplementary_analyses">Supplementary_analyses</a>. This folder includes three analyses:
 
 -   <a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/tree/main/Supplementary_analyses/cgMLST_method">Supplementary_analyses/cgMLST_method</a>:
     Using cgMLST to define transmission groups in another publicly
