@@ -5,7 +5,12 @@ K. Higgs, Darren Y. J. Lee, Shivani Pasricha, Nasra Higgins, Danielle J.
 Ingle, Benjamin P. Howden, Marcus Y. Chen, Christopher K. Fairley, Eric
 P. F. Chow, Deborah A. Williamson
 
-This GitHub contains all code used in the methods of this publication and additional supplementary analyses. 
+This GitHub contains all code used in this study. All reads used in this
+study are available in the NCBI database under BioProjects PRJNA520805
+and PRJNA1033374. Accessions are available in the Supplementary Dataset
+published with this study. All analyses performed for this study can be
+replicated using the code below, however input names, directory paths
+and file names may need to be edited accordingly.
 
 ## QC reads
 
@@ -128,7 +133,7 @@ prodigal -i NCCP11945.fa -t neisseria_gonorrhoeae.trn -p single
 ```
 
 Training file:
-<a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/cgMLST/neisseria_gonorrhoeae.trn" title="neisseria_gonorrhoeae.trn">neisseria_gonorrhoeae.trn</a>.
+<a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/cgMLST/neisseria_gonorrhoeae.trn">cgMLST/neisseria_gonorrhoeae.trn</a>.
 
 The *N. gonorrhoeae* cgMLST schema developed by
 <a href="https://doi: 10.1093/infdis/jiaa002" title="Harrison et al.">Harrison
@@ -160,16 +165,16 @@ chewBBACA.py ExtractCgMLST -i results/results_20211011T232621/results_alleles.ts
 
 cgMLST allele calling final results:
 
-<a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/cgMLST/Results/cgMLST.tsv">cgMLST.tsv</a>:
+<a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/cgMLST/Results/cgMLST.tsv">cgMLST/Results/cgMLST.tsv</a>:
 Table of alleles for each gene in the scheme for all isolates.
 
-<a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/cgMLST/Results/cgMLSTschema.txt">cgMLSTschema.txt</a>:
+<a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/cgMLST/Results/cgMLSTschema.txt">cgMLST/Results/cgMLSTschema.txt</a>:
 1495 genes included in final schema for this study.
 
-<a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/cgMLST/Results/mdata_stats.tsv">mdata_stats.tsv</a>:
+<a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/cgMLST/Results/mdata_stats.tsv">cgMLST/Results/mdata_stats.tsv</a>:
 Number of and percentage of uncalled genes per genome in the dataset.
 
-<a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/cgMLST/Results/presence_absence.csv">presence_absence.csv</a>:
+<a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/cgMLST/Results/presence_absence.csv">cgMLST/Results/presence_absence.csv</a>:
 Gene presence/absence table. (1 present, 0 absent).
 
 ### 4. cgMLST allelic differences
@@ -182,7 +187,7 @@ cgmlst-dists results/evaluate/cgMLST.tsv > cgMLST_matrix.txt
 ```
 
 Resulting matrix:
-<a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/cgMLST/Results/cgMLST_matrix.csv.zip">cgMLST_matrix.csv.zip</a>.
+<a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/cgMLST/Results/cgMLST_matrix.csv.zip">cgMLST/Results/cgMLST_matrix.csv.zip</a>.
 
 The values from this matrix were adjusted in
 <a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia?tab=readme-ov-file#12-determine-threshold-for-clustering">step
@@ -191,13 +196,13 @@ The values from this matrix were adjusted in
 ### 5. cgMLST alignment (only including 5,881 genomes)
 
 R Script to preprocess the data:
-<a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/cgMLST/cgMLST_alignment_part1.r">cgMLST_alignment_part1.r</a>
+<a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/cgMLST/cgMLST_alignment_part1.r">cgMLST/cgMLST_alignment_part1.r</a>
 This script takes the cgMLST.tsv result file and converts it into a long
 transposed version that lists the allele called at each gene for each
 isolate.
 
 Shell script to make the alignments:
-<a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/cgMLST/cgMLST_alignment_part2.r">cgMLST_alignment_part2.r</a>
+<a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/cgMLST/cgMLST_alignment_part2.r">cgMLST/cgMLST_alignment_part2.r</a>
 This script takes the transposed output file from the above R script and
 uses this as input. This script also requires a second input
 (all_alleles_cat.fasta), which is a fasta file that contains all the
@@ -241,7 +246,7 @@ phylogeny generated in the above step used as input:
 The following R code details steps to determine a threshold for
 clustering, adjusting the threshold for time between sample collection
 dates and performing clustering:
-<a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/cgMLST/Threshold.Rmd" title="Threshold.Rmd">Threshold.Rmd</a>.
+<a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/cgMLST/Threshold.Rmd">cgMLST/Threshold.Rmd</a>.
 
 The data required for the code can be downloaded from
 <a href="https://doi.org/10.26188/25989001">doi.org/10.26188/25989001</a>.
@@ -265,7 +270,7 @@ persistent isolates and isolates were grouped as either decreased
 susceptibility or susceptible.
 
 The following R code was used with
-<a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/Odds_ratio/odds_metadata.csv">odds_metadata.csv</a>
+<a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/Odds_ratio/odds_metadata.csv">Odds_ratio/odds_metadata.csv</a>
 as input.
 
 The input spreadsheet lists persistence in a binary system where 1 is
@@ -285,8 +290,10 @@ fit <- geeglm(formula = Persistence ~ Sex + AgeGroupSum + cluster_size + PEN + T
 
 broom::tidy(x = fit, exp=T, conf.int = TRUE)
 ```
+
 Results:
-```
+
+```         
   term                 estimate std.error statistic   p.value   conf.low conf.high
    <chr>                   <dbl>     <dbl>     <dbl>     <dbl>      <dbl>     <dbl>
  1 "(Intercept)"         0.00386   2.18        6.47  0.0110     0.0000534     0.279
@@ -359,7 +366,7 @@ Cluster whole genome pseudoalignments were subset from the entire
 dataset pseudoalignments for each of the previously defined cgMLST
 clusters with at least 5 isolates collected after 1st July 2019. A list
 of these isolates and their clusters can be found in
-<a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/Timed_trees/clustersover5.txt" title="clustersover5.txt">clustersover5.txt</a>.
+<a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/Timed_trees/clustersover5.txt" title="clustersover5.txt">Timed_trees/clustersover5.txt</a>.
 
 Note: Isolates were renamed to append the decimal date to each ID for
 <a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia?tab=readme-ov-file#6-bayesian-hierarchical-model">step
@@ -401,7 +408,7 @@ iqtree -s group_14_snippy_gubbins_SNPsites.fasta -B 1000 -T 60 -fconst 484048,53
 ```
 
 All ML phylogenies can be found in
-<a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/Timed_trees/ML_trees.zip">ML_trees.zip</a>.
+<a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/Timed_trees/ML_trees.zip">Timed_trees/ML_trees.zip</a>.
 
 Molecular dating of ancestral events was performed on the resulting ML
 trees, using the least-squares dating (LSD) software (v0.3) with a rate
@@ -415,10 +422,10 @@ The dates.txt input is a tab separated file that has the IDs in one
 column and the date of collection in decimal format in another for each
 isolate. A separate file was generated for each cluster. The decimal
 date for each isolate can be found in
-<a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/Timed_trees/dates.txt" title="dates.txt">dates.txt</a>.
+<a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/Timed_trees/dates.txt" title="dates.txt">Timed_trees/dates.txt</a>.
 
 All LSD timed phylogenies can be found in
-<a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/Timed_trees/LSD_trees.zip">LSD_trees.zip</a>.
+<a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/Timed_trees/LSD_trees.zip">Timed_trees/LSD_trees.zip</a>.
 
 ### 6. Bayesian hierarchical model
 
@@ -427,8 +434,16 @@ hierarchical model using this script. TO ADD.
 
 ## Supplementary Analyses
 
--   cgMLST scheme applied to a global dataset:
-    <a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/tree/main/Supplementary_analyses/cgMLST_method">cgMLST_method</a>.
--   Odds ratios using continuous MIC variable:
-    <a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/tree/main/Supplementary_analyses/Odds_ratio">Odds_ratio</a>.
--   Pairwise SNP distances
+In addition to methods used in the main manuscript and analyses,
+supplementary analyses are included in this GitHub. All supplementary
+analyses can be found in
+<https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/tree/main#>[:\~:text=Supplementary_analyses](https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/tree/main#:~:text=Supplementary_analyses).
+
+-   `<a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/tree/main/Supplementary_analyses/cgMLST_method"`{=html}Supplementary_analyses/cgMLST_method</a>:
+    Using cgMLST to define transmission groups in another publicly
+    available international *N. gonorrheoae* dataset.
+-   `<a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/tree/main/Supplementary_analyses/Odds_ratio"`{=html}Supplementary_analyses/Odds_ratio</a>:
+    Exploring alternate odds ratio models.
+-   `<a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/tree/main/Supplementary_analyses/SNP_alignment"`{=html}Supplementary_analyses/SNP_alignment</a>:
+-   Comparing the use of a traditional strict core alignment for
+    phylogeny and clustering compared to cgMLST
