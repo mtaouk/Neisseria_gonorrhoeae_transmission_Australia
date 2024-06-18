@@ -432,7 +432,7 @@ All LSD timed phylogenies can be found in
 The timed phylogenetic trees for each cluster were input into a Bayesian
 hierarchical model using this script. TO ADD.
 
-## Supplementary Analyses
+# Supplementary Analyses
 
 In addition to methods used in the main manuscript and analyses,
 supplementary analyses are included in this GitHub. All supplementary
