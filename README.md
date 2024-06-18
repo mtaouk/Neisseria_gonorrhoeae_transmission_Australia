@@ -445,5 +445,5 @@ analyses can be found in
 -   <a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/tree/main/Supplementary_analyses/Odds_ratio">Supplementary_analyses/Odds_ratio</a>:
     Exploring alternate odds ratio models.
 -   <a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/tree/main/Supplementary_analyses/SNP_alignment">Supplementary_analyses/SNP_alignment</a>:
--   Comparing the use of a traditional strict core alignment for
+    Comparing the use of a traditional strict core alignment for
     phylogeny and clustering compared to cgMLST
