@@ -38,22 +38,22 @@ core SNP alignment can be used to build a high-resolution phylogeny in
 many cases and has been the gold standard approach in bacterial
 phylogenetics for the past decade, when applied to a large and diverse
 dataset as in this case, it results in a shrinking of informative sites,
-and a less resolute phylogeny. N. gonorrhoeae is a very diverse species
-with much recombination, therefor the number of sites conserved across
-various samples is smaller. For example, across the full whole genome
-pseudoalignment, there is a minimum of 6% N sites (134,866 bp) for any
-genome. As these N sites will be dispersed mostly randomly across the
-genome, the chances of any site having at least one N in at least one
-sample is high and means that site will be excluded from the core SNP
-alignment, even if it is informative to the phylogeny. One way to
-increase the number of core SNP sites is to remove genomes with a high
-proportion of N sites from the alignment and analysis. In this case,
-1,184 genomes have more than 10% N sites. Excluding these would remove
-20% of isolates from the phylogeny and clustering analysis – decreasing
-our sampling proportion and introducing a high level of uncertainty into
-our clustering. As a result, we opted to use a cgMLST method, a much
-more permissive way of comparing relatedness across very diverse genomes
-in a large dataset.
+and a less resolute phylogeny. *N. gonorrhoeae* is a very diverse
+species with much recombination, therefor the number of sites conserved
+across various samples is smaller. For example, across the full whole
+genome pseudoalignment, there is a minimum of 6% N sites (134,866 bp)
+for any genome. As these N sites will be dispersed mostly randomly
+across the genome, the chances of any site having at least one N in at
+least one sample is high and means that site will be excluded from the
+core SNP alignment, even if it is informative to the phylogeny. One way
+to increase the number of core SNP sites is to remove genomes with a
+high proportion of N sites from the alignment and analysis. In this
+case, 1,184 genomes have more than 10% N sites. Excluding these would
+remove 20% of isolates from the phylogeny and clustering analysis –
+decreasing our sampling proportion and introducing a high level of
+uncertainty into our clustering. As a result, we opted to use a cgMLST
+method, a much more permissive way of comparing relatedness across very
+diverse genomes in a large dataset.
 
 The concern that using a strict core results in isolates potentially
 being classified as more closely related than they would be, stems from
@@ -79,12 +79,9 @@ for MLST profiles which appear in at least 30 isolates. Phenotypic
 resistance profiles are shown on the right. The tree scale represents
 substitutions per site.
 
-<<<<<<< HEAD
 SNP tree can be downloaded from
 [SNP.tree](https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/Supplementary_analyses/SNP_alignment/SNP.tree).
 
-=======
->>>>>>> 0d181f119e7c3282fd0248adda7e0afa2e66a046
 ## cgMLST tree
 
 ![](images/cgMLST_tree.png)
@@ -110,7 +107,6 @@ pairwise SNP distance is 0. The methods are as follows:
 
 ### Libraries and load data:
 
-<<<<<<< HEAD
 All data can be downloaded from:
 
 -   [6215_core_dists.txt](https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/Supplementary_analyses/SNP_alignment/6215_core_dists.txt)
@@ -118,9 +114,6 @@ All data can be downloaded from:
 -   [intrapatient.csv](https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/Supplementary_analyses/SNP_alignment/intrapatient.csv)
 
 -   [passes.csv](https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/Supplementary_analyses/SNP_alignment/passes.csv)
-=======
-FILES LINK
->>>>>>> 0d181f119e7c3282fd0248adda7e0afa2e66a046
 
 ```         
 # Libraries
@@ -233,11 +226,7 @@ ggplot(data_merged, aes(x=dist, fill = factor(legend, level = c("Between individ
   facet_grid(scales = "free", rows = vars(factor(legend, level = c("Between individuals", "Within individuals", "Within site", "Paired"))))
 ```
 
-<<<<<<< HEAD
 ![](images/000023.png)
-=======
-another one
->>>>>>> 0d181f119e7c3282fd0248adda7e0afa2e66a046
 
 ```         
 ggplot(data_merged, aes(x=dist, fill = factor(legend, level = c("Between individuals", "Within individuals", "Within site", "Paired")))) +
@@ -256,8 +245,5 @@ ggplot(data_merged, aes(x=dist, fill = factor(legend, level = c("Between individ
   facet_grid(scales = "free", rows = vars(factor(legend, level = c("Between individuals", "Within individuals", "Within site", "Paired")))) +
   scale_x_continuous(limits = c(-1, 10))
 ```
-<<<<<<< HEAD
 
 ![](images/000025.png)
-=======
->>>>>>> 0d181f119e7c3282fd0248adda7e0afa2e66a046
