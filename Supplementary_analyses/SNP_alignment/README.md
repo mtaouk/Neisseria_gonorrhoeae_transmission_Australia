@@ -2,16 +2,16 @@
 
 The trimmed paired end reads were aligned to the NCCP11945 reference
 genome using Snippy (v4.3.5), requiring a minimum of ten supporting
-reads and a variant frequency of 0.9 or greater. Recombination filtering
-was performed using Gubbins (v2.4.1) with default settings and the full
-Snippy pseudoalignments as input. Following Gubbins, a core SNP
-alignment was generated using snp-sites (v1) and the Gubbins filtered
-alignment as input with the -c flag. The number of constant sites from
-the whole genome pseudoalignment was also calculated using snp-sites
-with the -C flag (v1). A ML phylogenetic tree was inferred using IQ-tree
-(v2.0.3), with the best-fitting nucleotide substitution model chosen
-based on the lowest BIC and the number of constant sites specified.
-Molecular dating of ancestral events was performed using the
+reads and a variant frequency of 0.9 or greater. Recombination
+filtering. was performed using Gubbins (v2.4.1) with default settings
+and the full Snippy pseudoalignments as input. Following Gubbins, a core
+SNP alignment was generated using snp-sites (v1) and the Gubbins
+filtered alignment as input with the -c flag. The number of constant
+sites from the whole genome pseudoalignment was also calculated using
+snp-sites with the -C flag (v1). A ML phylogenetic tree was inferred
+using IQ-tree (v2.0.3), with the best-fitting nucleotide substitution
+model chosen based on the lowest BIC and the number of constant sites
+specified. Molecular dating of ancestral events was performed using the
 least-squares dating (LSD) software (v0.3), with the whole dataset
 maximum likelihood phylogeny generated here used an input. All code is
 here:
@@ -79,6 +79,12 @@ for MLST profiles which appear in at least 30 isolates. Phenotypic
 resistance profiles are shown on the right. The tree scale represents
 substitutions per site.
 
+<<<<<<< HEAD
+SNP tree can be downloaded from
+[SNP.tree](https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/Supplementary_analyses/SNP_alignment/SNP.tree).
+
+=======
+>>>>>>> 0d181f119e7c3282fd0248adda7e0afa2e66a046
 ## cgMLST tree
 
 ![](images/cgMLST_tree.png)
@@ -104,7 +110,17 @@ pairwise SNP distance is 0. The methods are as follows:
 
 ### Libraries and load data:
 
+<<<<<<< HEAD
+All data can be downloaded from:
+
+-   [6215_core_dists.txt](https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/Supplementary_analyses/SNP_alignment/6215_core_dists.txt)
+
+-   [intrapatient.csv](https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/Supplementary_analyses/SNP_alignment/intrapatient.csv)
+
+-   [passes.csv](https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/Supplementary_analyses/SNP_alignment/passes.csv)
+=======
 FILES LINK
+>>>>>>> 0d181f119e7c3282fd0248adda7e0afa2e66a046
 
 ```         
 # Libraries
@@ -217,7 +233,11 @@ ggplot(data_merged, aes(x=dist, fill = factor(legend, level = c("Between individ
   facet_grid(scales = "free", rows = vars(factor(legend, level = c("Between individuals", "Within individuals", "Within site", "Paired"))))
 ```
 
+<<<<<<< HEAD
+![](images/000023.png)
+=======
 another one
+>>>>>>> 0d181f119e7c3282fd0248adda7e0afa2e66a046
 
 ```         
 ggplot(data_merged, aes(x=dist, fill = factor(legend, level = c("Between individuals", "Within individuals", "Within site", "Paired")))) +
@@ -236,3 +256,8 @@ ggplot(data_merged, aes(x=dist, fill = factor(legend, level = c("Between individ
   facet_grid(scales = "free", rows = vars(factor(legend, level = c("Between individuals", "Within individuals", "Within site", "Paired")))) +
   scale_x_continuous(limits = c(-1, 10))
 ```
+<<<<<<< HEAD
+
+![](images/000025.png)
+=======
+>>>>>>> 0d181f119e7c3282fd0248adda7e0afa2e66a046
