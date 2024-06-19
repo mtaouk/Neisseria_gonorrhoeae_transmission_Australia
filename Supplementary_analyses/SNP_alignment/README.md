@@ -38,26 +38,30 @@ core SNP alignment can be used to build a high-resolution phylogeny in
 many cases and has been the gold standard approach in bacterial
 phylogenetics for the past decade, when applied to a large and diverse
 dataset as in this case, it results in a shrinking of informative sites,
-and a less resolute phylogeny. *N. gonorrhoeae* is a very diverse
-species with much recombination, therefor the number of sites conserved
-across various samples is smaller. For example, across the full whole
-genome pseudoalignment, there is a minimum of 6% N sites (134,866 bp)
-for any genome. As these N sites will be dispersed mostly randomly
-across the genome, the chances of any site having at least one N in at
-least one sample is high and means that site will be excluded from the
-core SNP alignment, even if it is informative to the phylogeny. One way
-to increase the number of core SNP sites is to remove genomes with a
-high proportion of N sites from the alignment and analysis. In this
-case, 1,184 genomes have more than 10% N sites. Excluding these would
-remove 20% of isolates from the phylogeny and clustering analysis –
-decreasing our sampling proportion and introducing a high level of
-uncertainty into our clustering. Alternatively, using a less strict core
-approach has been recently proposed and used in phylogenetic studies
-(link). We are exploring the effects of using a 95% core pseudoalignment
-(including any sites in the core alignment that are present in 95% of
-genomes) in phylogenetics with a forthcoming manuscript. Due to these
-reasons, we opted to use a cgMLST method, a much more permissive way of
-comparing relatedness across very diverse genomes in a large dataset.
+and a less resolute phylogeny. N. gonorrhoeae is a very diverse species
+with much recombination, therefor the number of sites conserved across
+various samples is smaller. For example, across the full whole genome
+pseudoalignment, there is a minimum of 6% N sites (134,866 bp) for any
+genome. As these N sites will be dispersed mostly randomly across the
+genome, the chances of any site having at least one N in at least one
+sample is high and means that site will be excluded from the core SNP
+alignment, even if it is informative to the phylogeny. One way to
+increase the number of core SNP sites is to remove genomes with a high
+proportion of N sites from the alignment and analysis. In this case,
+1,184 genomes have more than 10% N sites. Excluding these would remove
+20% of isolates from the phylogeny and clustering analysis – decreasing
+our sampling proportion and introducing a high level of uncertainty into
+our clustering. As a result, we opted to use a cgMLST method, a much
+more permissive way of comparing relatedness across very diverse genomes
+in a large dataset.
+
+The concern that using a strict core results in isolates potentially
+being classified as more closely related than they would be, stems from
+the principle of using a static SNP threshold to define transmission.
+For example, a common SNP threshold of 10 SNPs would result in much more
+permissive clustering using a core SNP alignment of 8,842 compared to
+using the same threshold on a larger core, as the threshold represents a
+fraction of the total sites.
 
 Regardless, we have generated a recombination filtered core genome SNP
 ML phylogeny. We can see that the overall population structure is mostly
@@ -65,4 +69,9 @@ conserved, however the resolution at recent evolutionary events is much
 reduced when compared to the concatenated cgMLST phylogeny. We also
 generated a timed phylogeny from the recombination masked core genome
 SNP ML phylogeny which produced similar results to the timed tree
-generated from the concatenated cgMLST alignment.
+generated from the concatenated cgMLST alignment. Both phylogenies are
+rooted at the midpoint.
+
+## SNP tree
+
+![](images/SNP_tree.pdf){width="188.8cm" height="20cm"}
