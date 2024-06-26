@@ -429,8 +429,14 @@ All LSD timed phylogenies can be found in
 
 ### 6. Bayesian hierarchical model
 
-The timed phylogenetic trees for each cluster were input into a Bayesian
-hierarchical model using this script. TO ADD.
+The timed phylogenetic trees for each cluster were input into a Bayesian hierarchical model. We applied a birth-death skyline process to all trees. Under this model, the epidemiological process follows a birth-death process, where branching events in a phylogenetic tree are informative about transmission, and the sampling process is directly modelled. The epidemiological parameters can change in a piecewise fashion over two intervals, with the interval time estimated as part of the model. Each transmission cluster had a fixed average infection duration of three months and shared a sampling proportion parameter, meaning that sampling intensity is a free parameter that is estimated here. However, each cluster was allowed to have independent effective reproductive numbers (Re) and epidemic origin times. The Re values were permitted to vary at a specific point in time, referred to as the "time slice," which represented a significant point of change in Re values. Although Re values were independent for each cluster, they were governed by a single Gamma prior distribution with two hyperparameters: shape and mean. The shape of this distribution influenced the skew, with smaller values indicating more variation in Re among clusters, and larger values suggesting similarity in Re values across clusters.
+
+In our model, the Re values for clusters followed a Gamma distribution, where the shape parameter reflected heterogeneity in the spread among clusters. We maintained a fixed infection duration of three months in our hierarchical model, reflecting what we considered was the most plausible scenario. The birth-death model design resulted in different magnitudes of Re values, although the trends remained consistent.  We assumed a uniform prior distribution for all origin times, ranging from zero to six months. Before the first genome of each cluster was sampled, we set the sampling proportion to 0.0, and thereafter, it was modelled with a Beta(1, 30) prior distribution to capture our assumption that the sampling proportion was at most 10%. The hyperparameters of the Gamma distribution for Re values were assigned Gamma(10, 1) priors. Additionally, the time slice allowing Re value changes was assigned a uniform prior distribution between March 20 and March 30, 2020.
+
+We sampled the posterior distribution using Markov chain Monte Carlo, implemented in BEAST2.6, with a chain length of 109 steps and sampling every 105 steps. As the phylogenetic trees were fixed, there were no calculations of phylogenetic likelihood, making this analysis computationally more efficient compared to those involving both phylogenetic and phylodynamic likelihoods.
+
+The XML: 
+<a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/Timed_trees/hierarchical_with_feast_D90days.xml">Timed_trees/hierarchical_with_feast_D90days.xml</a>
 
 # Supplementary Analyses
 
