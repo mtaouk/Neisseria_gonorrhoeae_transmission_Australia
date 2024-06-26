@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><beast beautitemplate='Standard' beautistatus='' 
+    namespace="beast.core
+          :beast.evolution.alignment
+          :beast.evolution.tree.coalescent
+          :beast.core.util
+          :beast.evolution.nuc
+          :beast.evolution.operators
+          :beast.evolution.sitemodel
+          :beast.evolution.substitutionmodel
+          :beast.evolution.likelihood
+          :skylinetools.util
+          :feast:feast.expressions" required="BDSKY v1.3.3" version="2.6">
+
+    <!-- Slices for first and second interval:-->
+    <plate var="n" range="1003,1020,1030,1034,1040,1043,1045,1067,1079,1091,1094,1102,1104,1105,1111,1126,1127,1132,1135,1152,1160,1164,1177,1187,1206,1213,14,146,15,155,180,22,230,231,26,268,277,33,34,38,451,50,502,551,554,556,557,558,560,562,567,570,574,575,579,605,614,616,625,629,649,657,661,666,681,687,692,718,740,750,761,773,780,791,818,840,844,846,848,852,859,860,879,883,898,926,938,958,960,966,967,980,983,989,991,994,995">
+        <function spec="Slice" id="ReSlice$(n)_0" arg="@reproductiveNumber$(n)" index="0" count="1"/>
+        <function spec="Slice" id="ReSlice$(n)_1" arg="@reproductiveNumber$(n)" index="1" count="1"/>
+    </plate>
+
+    <function spec="beast.core.util.Slice" id="samplingProportionSlice" arg="@samplingProportion" index="1" count="1"/>
+
+
+    <map name="Uniform" >beast.math.distributions.Uniform</map>
+    <map name="Exponential" >beast.math.distributions.Exponential</map>
+    <map name="LogNormal" >beast.math.distributions.LogNormalDistributionModel</map>
+    <map name="Normal" >beast.math.distributions.Normal</map>
+    <map name="Beta" >beast.math.distributions.Beta</map>
+    <map name="Gamma" >beast.math.distributions.Gamma</map>
+    <map name="LaplaceDistribution" >beast.math.distributions.LaplaceDistribution</map>
+    <map name="prior" >beast.math.distributions.Prior</map>
+    <map name="InverseGamma" >beast.math.distributions.InverseGamma</map>
+    <map name="OneOnX" >beast.math.distributions.OneOnX</map>
+
+    <plate var="n" range="1003,1020,1030,1034,1040,1043,1045,1067,1079,1091,1094,1102,1104,1105,1111,1126,1127,1132,1135,1152,1160,1164,1177,1187,1206,1213,14,146,15,155,180,22,230,231,26,268,277,33,34,38,451,50,502,551,554,556,557,558,560,562,567,570,574,575,579,605,614,616,625,629,649,657,661,666,681,687,692,718,740,750,761,773,780,791,818,840,844,846,848,852,859,860,879,883,898,926,938,958,960,966,967,980,983,989,991,994,995">
+        <alignment spec='feast.fileio.AlignmentFromFasta' fileName="LSD_trees/group_$(n)_timed.fasta" id="alignment$(n)"/>   
+        <tree spec="feast.fileio.TreeFromNewickFile" fileName="LSD_trees/group_$(n)_timed.tree" id="myTree$(n)" IsLabelledNewick="true" adjustTipHeights="false">                
+            <trait spec="feast.fileio.TraitSetFromTaxonSet"
+                delimiter="_"
+                everythingAfterLast="true"
+                traitname="date">
+                <taxa id="TaxonSet$(n)" spec="TaxonSet" alignment="@alignment$(n)"/> 
+            </trait>
+        </tree>
+    </plate>
+
+    <run id="mcmc" spec="MCMC" chainLength="10000000000">
+
+      <state id="state" spec="State" storeEvery="5000">
+      <!-- Assume an average duration of infection of 90 days, so 1/4 years 
+      -->
+        <parameter id="becomeUninfectiousRate" spec="parameter.RealParameter" lower="0.0" name="stateNode" upper="Infinity">4</parameter>
+        <plate var="n" range="1003,1020,1030,1034,1040,1043,1045,1067,1079,1091,1094,1102,1104,1105,1111,1126,1127,1132,1135,1152,1160,1164,1177,1187,1206,1213,14,146,15,155,180,22,230,231,26,268,277,33,34,38,451,50,502,551,554,556,557,558,560,562,567,570,574,575,579,605,614,616,625,629,649,657,661,666,681,687,692,718,740,750,761,773,780,791,818,840,844,846,848,852,859,860,879,883,898,926,938,958,960,966,967,980,983,989,991,994,995">
+            <parameter id="origin_BDSKY_Serial$(n)" spec="parameter.RealParameter" lower="0.0" name="stateNode" upper="Infinity">0.1</parameter>
+            <parameter id="reproductiveNumber$(n)" spec="parameter.RealParameter" dimension="2" lower="0.0" name="stateNode" upper="Infinity">2.0</parameter>
+        </plate>
+            <parameter id="samplingProportion" spec="parameter.RealParameter" lower="0.0" name="stateNode" dimension="2" upper="1.0">0 0.1</parameter> 
+            <parameter id="reproductiveNumberChangeDate" name="stateNode" dimension="1">2020.23</parameter>
+
+            <parameter id="alpha_first_Re_slice" name="stateNode" dimension="1">1</parameter>
+            <parameter id="beta_first_Re_slice" name="stateNode" dimension="1">1</parameter>
+
+            <parameter id="alpha_second_Re_slice" name="stateNode" dimension="1">1</parameter>
+            <parameter id="beta_second_Re_slice" name="stateNode" dimension="1">1</parameter>
+        </state>
+
+        <distribution id="posterior" spec="util.CompoundDistribution">
+            <distribution id="prior" spec="util.CompoundDistribution">
+        
+            <plate var="n" range="1003,1020,1030,1034,1040,1043,1045,1067,1079,1091,1094,1102,1104,1105,1111,1126,1127,1132,1135,1152,1160,1164,1177,1187,1206,1213,14,146,15,155,180,22,230,231,26,268,277,33,34,38,451,50,502,551,554,556,557,558,560,562,567,570,574,575,579,605,614,616,625,629,649,657,661,666,681,687,692,718,740,750,761,773,780,791,818,840,844,846,848,852,859,860,879,883,898,926,938,958,960,966,967,980,983,989,991,994,995">
+                <distribution id="BDSKY_Serial_myTree$(n)" spec="beast.evolution.speciation.BirthDeathSkylineModel" 
+                    becomeUninfectiousRate="@becomeUninfectiousRate"
+                    origin="@origin_BDSKY_Serial$(n)" 
+                    reproductiveNumber="@reproductiveNumber$(n)" 
+                    samplingProportion="@samplingProportion" 
+                    tree="@myTree$(n)"
+		            originIsRootEdge="true">
+                    <birthRateChangeTimes spec="TreeDateSlicer" id="ReTreeSlice$(n)" tree="@myTree$(n)" dates="@reproductiveNumberChangeDate"/>
+                    <samplingRateChangeTimes spec="TreeSlicer" id="SamplingTreeSlice$(n)" tree="@myTree$(n)" dimension="2" to="oldestsample" inclusive="true"/>
+                    <reverseTimeArrays spec="beast.core.parameter.BooleanParameter" value="true false true false false"/>
+                </distribution>
+            </plate>	    
+
+            <!--prior id="becomeUninfectiousRatePrior_BDSKY_Serial" name="distribution" x="@becomeUninfectiousRate">
+                <LogNormal id="LogNormalDistributionModel.0" name="distr" M="0" S="1"/>
+            </prior-->
+                <plate var="n" range="1003,1020,1030,1034,1040,1043,1045,1067,1079,1091,1094,1102,1104,1105,1111,1126,1127,1132,1135,1152,1160,1164,1177,1187,1206,1213,14,146,15,155,180,22,230,231,26,268,277,33,34,38,451,50,502,551,554,556,557,558,560,562,567,570,574,575,579,605,614,616,625,629,649,657,661,666,681,687,692,718,740,750,761,773,780,791,818,840,844,846,848,852,859,860,879,883,898,926,938,958,960,966,967,980,983,989,991,994,995">
+                    <prior id="originPrior_BDSKY$(n)" name="distribution" x="@origin_BDSKY_Serial$(n)">
+                    <Uniform id="Uniform.12$(n)" name="distr" lower="0.0" upper="0.5"/>
+                    </prior>
+                </plate>
+            
+                <plate var="n" range="1003,1020,1030,1034,1040,1043,1045,1067,1079,1091,1094,1102,1104,1105,1111,1126,1127,1132,1135,1152,1160,1164,1177,1187,1206,1213,14,146,15,155,180,22,230,231,26,268,277,33,34,38,451,50,502,551,554,556,557,558,560,562,567,570,574,575,579,605,614,616,625,629,649,657,661,666,681,687,692,718,740,750,761,773,780,791,818,840,844,846,848,852,859,860,879,883,898,926,938,958,960,966,967,980,983,989,991,994,995">
+                    <prior id="reproductiveNumberPrior_first_slice$(n)" name="distribution" x="@ReSlice$(n)_0">
+                        <Gamma id="Gamma_first_slice$(n)" name="distr" mode="ShapeMean" alpha="@alpha_first_Re_slice" beta="@beta_first_Re_slice"/>
+                    </prior>
+                </plate>
+
+                <plate var="n" range="1003,1020,1030,1034,1040,1043,1045,1067,1079,1091,1094,1102,1104,1105,1111,1126,1127,1132,1135,1152,1160,1164,1177,1187,1206,1213,14,146,15,155,180,22,230,231,26,268,277,33,34,38,451,50,502,551,554,556,557,558,560,562,567,570,574,575,579,605,614,616,625,629,649,657,661,666,681,687,692,718,740,750,761,773,780,791,818,840,844,846,848,852,859,860,879,883,898,926,938,958,960,966,967,980,983,989,991,994,995">
+                    <prior id="reproductiveNumberPrior_second_s tlice$(n)" name="distribution" x="@ReSlice$(n)_1">
+                        <Gamma id="Gamma_second_slice$(n)" name="distr" mode="ShapeMean" alpha="@alpha_second_Re_slice" beta="@beta_second_Re_slice"/>
+                    </prior>
+                </plate>
+
+                <!-- Sampling proportion thought to be betweeen 5 and 10 % 
+                    Here the Gamma distro has a top 0.975 at 0.11:
+                -->
+                <prior id="samplingPropPrior$(n)" name="distribution" x="@samplingProportionSlice">
+                    <Beta id="Beta.1" name="distr" alpha="1" beta="30"/>
+                </prior>
+
+                <prior id="reproductiveNumberChangeDate_prior" name="distribution" x="@reproductiveNumberChangeDate">
+                    <Uniform id="uniform_ReChange_date" name="distr" lower="2020.216" upper="2020.243"/>
+                </prior>
+
+                <!-- Maybe these are better off as uniform distros?-->
+                <prior id="alpha_first_slice_hyper_prior" name="distribution" x="@alpha_first_Re_slice">
+                    <Gamma id="Gamma_first_alpha" name="distr" mode="ShapeRate" alpha="10" beta="1"/> 
+                </prior>
+                <prior id="beta_first_slice_hyper_prior" name="distribution" x="@beta_first_Re_slice">
+                    <Gamma id="Gamma_first_beta" name="distr" mode="ShapeRate" alpha="10" beta="1"/>
+                </prior>
+                <prior id="alpha_second_slice_hyper_prior" name="distribution" x="@alpha_second_Re_slice">
+                    <Gamma id="Gamma_second_alpha" name="distr" mode="ShapeRate" alpha="10" beta="1"/> 
+                </prior>
+                <prior id="beta_second_slice_hyper_prior" name="distribution" x="@beta_second_Re_slice">
+                    <Gamma id="Gamma_second_beta" name="distr" mode="ShapeRate" alpha="10" beta="1"/> 
+                </prior>
+
+            </distribution>
+        </distribution>
+
+        <!--operator id="becomeUninfectiousRateScaler" spec="ScaleOperator" parameter="@becomeUninfectiousRate" weight="2.0"/-->
+
+        <plate var="n" range="1003,1020,1030,1034,1040,1043,1045,1067,1079,1091,1094,1102,1104,1105,1111,1126,1127,1132,1135,1152,1160,1164,1177,1187,1206,1213,14,146,15,155,180,22,230,231,26,268,277,33,34,38,451,50,502,551,554,556,557,558,560,562,567,570,574,575,579,605,614,616,625,629,649,657,661,666,681,687,692,718,740,750,761,773,780,791,818,840,844,846,848,852,859,860,879,883,898,926,938,958,960,966,967,980,983,989,991,994,995">
+            <operator id="reproductiveNumberScaler$(n)" spec="ScaleOperator" parameter="@reproductiveNumber$(n)" scaleFactor="0.7" weight="10.0"/>
+            <operator id="origin_BDSKY_SerialScaler$(n)" spec="ScaleOperator" parameter="@origin_BDSKY_Serial$(n)" scaleFactor="0.7" weight="10.0"/>
+        </plate>
+
+        <operator id="samplingProportionScaler" spec="ScaleOperator" parameter="@samplingProportion" scaleFactor="0.7" weight="10.0"/>
+        <operator id="alpha_first_Re_slice_operator" spec="ScaleOperator" parameter="@alpha_first_Re_slice" weight="10" scaleFactor="0.7"/>
+        <operator id="beta_first_Re_slice_operator" spec="ScaleOperator" parameter="@beta_first_Re_slice" weight="10" scaleFactor="0.7"/>
+        <operator id="alpha_second_Re_slice_operator" spec="ScaleOperator" parameter="@alpha_second_Re_slice" weight="10" scaleFactor="0.7"/>
+        <operator id="beta_second_Re_slice_operator" spec="ScaleOperator" parameter="@beta_second_Re_slice" weight="10" scaleFactor="0.7"/>
+        <operator id="reproductiveNumberChangeDate_operator" spec="ScaleOperator" parameter="@reproductiveNumberChangeDate" weight="10" scaleFactor="0.999"/>
+
+        <logger id="tracelog" spec="Logger" fileName="hierarchical_with_feast_D90days.log" logEvery="100000" model="@posterior" sanitiseHeaders="true" sort="smart">
+            <log idref="posterior"/>
+            <log idref="prior"/>
+            <plate var="n" range="1003,1020,1030,1034,1040,1043,1045,1067,1079,1091,1094,1102,1104,1105,1111,1126,1127,1132,1135,1152,1160,1164,1177,1187,1206,1213,14,146,15,155,180,22,230,231,26,268,277,33,34,38,451,50,502,551,554,556,557,558,560,562,567,570,574,575,579,605,614,616,625,629,649,657,661,666,681,687,692,718,740,750,761,773,780,791,818,840,844,846,848,852,859,860,879,883,898,926,938,958,960,966,967,980,983,989,991,994,995">
+                <log idref="BDSKY_Serial_myTree$(n)"/>
+                <log idref="origin_BDSKY_Serial$(n)"/>
+            </plate>
+            <log idref="becomeUninfectiousRate"/>
+            <plate var="n" range="1003,1020,1030,1034,1040,1043,1045,1067,1079,1091,1094,1102,1104,1105,1111,1126,1127,1132,1135,1152,1160,1164,1177,1187,1206,1213,14,146,15,155,180,22,230,231,26,268,277,33,34,38,451,50,502,551,554,556,557,558,560,562,567,570,574,575,579,605,614,616,625,629,649,657,661,666,681,687,692,718,740,750,761,773,780,791,818,840,844,846,848,852,859,860,879,883,898,926,938,958,960,966,967,980,983,989,991,994,995">
+                <log idref="ReSlice$(n)_0"/>
+                <log idref="ReSlice$(n)_1"/>
+            </plate>
+            <log idref="samplingProportion"/>
+            <log idref="reproductiveNumberChangeDate"/>
+            <log idref="alpha_first_Re_slice"/>
+            <log idref="beta_first_Re_slice"/>
+            <log idref="alpha_second_Re_slice"/>
+            <log idref="beta_second_Re_slice"/>
+        </logger>
+        <logger id="screenlog" spec="Logger" logEvery="100000">
+            <log idref="posterior"/>
+            <log idref="prior"/>
+            <log idref="reproductiveNumberChangeDate"/>
+            <log idref="ReSlice1003_0"/>
+            <log idref="ReSlice1003_1"/>
+            <log idref="ReSlice1020_0"/>
+            <log idref="ReSlice1020_1"/>
+            <log idref="alpha_first_Re_slice"/>
+            <log idref="beta_first_Re_slice"/>
+            <log idref="alpha_second_Re_slice"/>
+            <log idref="beta_second_Re_slice"/>
+
+        </logger>
+        <!-- logger id="treelog.t:simulatedRe3_r3" spec="Logger" fileName="test_out.trees" logEvery="1000" mode="tree">
+            <log id="TreeWithMetaDataLogger.t:simulatedRe3_r3" spec="beast.evolution.tree.TreeWithMetaDataLogger" tree="@myTree0"/>
+        </logger -->
+        <operatorschedule id="OperatorSchedule" spec="OperatorSchedule"/>
+    </run>
+</beast>
