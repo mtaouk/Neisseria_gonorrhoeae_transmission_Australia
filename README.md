@@ -12,7 +12,7 @@ published with this study. All analyses performed for this study can be
 replicated using the code below, however input names, directory paths
 and file names may need to be edited accordingly.
 
-## QC reads
+## Quality check reads
 
 ### 1. Kraken
 
