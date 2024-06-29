@@ -37,8 +37,8 @@ Using this method, the core SNP alignment consisted of 8,842 core sites
 core SNP alignment can be used to build a high-resolution phylogeny in
 many cases and has been the gold standard approach in bacterial
 phylogenetics for the past decade, when applied to a large and diverse
-dataset as in this case, it results in a shrinking of informative sites,
-and a less resolute phylogeny. *N. gonorrhoeae* is a very diverse
+dataset as in this case, it can result in a shrinking of informative
+sites, and a less resolved phylogeny. N. gonorrhoeae is a very diverse
 species with much recombination, therefor the number of sites conserved
 across various samples is smaller. For example, across the full whole
 genome pseudoalignment, there is a minimum of 6% N sites (134,866 bp)
@@ -56,12 +56,12 @@ method, a much more permissive way of comparing relatedness across very
 diverse genomes in a large dataset.
 
 The concern that using a strict core results in isolates potentially
-being classified as more closely related than they would be, stems from
+being classified as more closely related than they would be stems from
 the principle of using a static SNP threshold to define transmission.
 For example, a common SNP threshold of 10 SNPs would result in much more
-permissive clustering using a core SNP alignment of 8,842 compared to
-using the same threshold on a larger core, as the threshold represents a
-fraction of the total sites.
+permissive clustering using a core SNP alignment of one hundred sites
+compared to using the same threshold on a larger core of thousands, as
+the threshold represents a fraction of the total sites.
 
 Regardless, we have generated a recombination filtered core genome SNP
 ML phylogeny. We can see that the overall population structure is mostly

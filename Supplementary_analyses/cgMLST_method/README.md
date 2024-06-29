@@ -11,8 +11,8 @@ allele calling and refining methods as described in our study to assess
 the generalizability of this method. After performing allele calling on
 the De Silva genomes, we refined the cgMLST schema to 1,506 genes were
 present in 95% of isolates and used these genes as the schema. This was
-comparable to our refined scheme of 1,495 genes. 1,476 of the genes
-retained in the De Silva 95% schema were included in our refined scheme.
+comparable to our refined schema of 1,495 genes. 1,476 of the genes
+retained in the De Silva 95% schema were included in our refined schema.
 All cgMLST result files including the refined schema and alleles called
 for each gene at each isolate can be found in
 [cgMLST_results](https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/tree/main/Supplementary_analyses/cgMLST_method/cgMLST_results).
@@ -76,6 +76,7 @@ ggplot(data_merged_density, aes(x=Var1, y=Freq)) +
   xlab("Pairwise allelic difference") +
   scale_y_continuous(labels = function(x) format(x, scientific = FALSE, big.mark = " "))
 ```
+
 ![00001f](https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/assets/90819350/9646d68f-4e4b-4a69-afde-ac4299a9895e)
 
 ## Plot the distribution of pairwise allelic differences for the calibration isolates (within individual, within site)
@@ -113,9 +114,27 @@ ggplot(cgMLST_melt_sum, aes(x=Var1, y=Freq, fill = factor(Var2, level = c("Withi
   scale_fill_manual(values = c("#fdbb84", "#ef6548"), na.translate=FALSE)  +
   scale_x_continuous(limits = c(0, 50))
 ```
+
 ![000039](https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/assets/90819350/2f7d8726-b90a-4065-b5ce-e29e2a7eed5a)
 
-To determine an appropriate clustering threshold for the De Silva dataset we plotted the distribution of pairwise allelic differences of the within-individual pairs and within-site pairs of genomes, applying the same principle as for selecting the clustering threshold in our own dataset. All within-site pairs of genomes were between 0 and 3 allelic differences apart. While the within-individual pairs of genomes were between 0 and 944 allelic differences apart. However, the majority of within-individual pairs falling within the 0 to 7 range. This is comparable to our own results, where we also saw co-infections amongst our within-individual pairs, representing the high pairwise allelic differences. As the majority of the within-individual isolates fell below 7 pairwise allelic differences suggesting that it would be an appropriate threshold to use in this case. While the datasets and scheme are not identical, the same methods can be applied to any N. gonorrhoeae dataset to investigate transmission and a threshold can be applied based on available calibration isolates as done here, or a similar threshold of 7 pairwise allelic differences could be generalizable to other studies if no calibration isolates are available.
+To determine an appropriate clustering threshold for the De Silva
+dataset we plotted the distribution of pairwise allelic differences of
+the within-individual pairs and within-site pairs of genomes, applying
+the same principle as for selecting the clustering threshold in our own
+dataset. All within-site pairs of genomes were between 0 and 3 allelic
+differences apart, while the within-individual pairs of genomes were
+between 0 and 944 allelic differences apart. However, the majority of
+within-individual pairs falling within the 0 to 7 range. This is
+comparable to our own results, where we also saw co-infections amongst
+our within-individual pairs, representing the high pairwise allelic
+differences. The majority of the within-individual isolates fell below 7
+pairwise allelic differences suggesting that it would be an appropriate
+threshold to use in this case. While the datasets and scheme are not
+identical, the same methods can be applied to any *N. gonorrhoeae*
+dataset to investigate transmission and a threshold can be applied based
+on available calibration isolates as done here, or a similar threshold
+of 7 pairwise allelic differences could be generalizable to other
+studies if no calibration isolates are available.
 
 ## Generate clusters
 
@@ -130,8 +149,10 @@ hc_cut <- cutree(hc, h=7)
 hc_cut_df <- as.data.frame(hc_cut)
 ```
 
-When applying the threshold of 7 allelic differences as a threshold for single linkage hierarchical clustering to defining genomic transmission clusters 32 singletons (n = 1), 70 pairs (n = 2) and 46 clusters (n ≥ 3) were identified.
-
+When applying the threshold of 7 allelic differences as a threshold for
+single linkage hierarchical clustering to defining genomic transmission
+clusters 32 singletons (n = 1), 70 pairs (n = 2) and 46 clusters (n ≥ 3)
+were identified.
 
 The clustering results can be downloaded from
 [hc_cut.csv](https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/Supplementary_analyses/cgMLST_method/hc_cut.csv).
