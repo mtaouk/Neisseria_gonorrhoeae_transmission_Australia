@@ -340,10 +340,10 @@ run_gubbins.py --threads 10 core.full.aln
 ```
 
 Following Gubbins, a SNP alignment was generated using snp-sites (v1)
-and the Gubbins filtered alignment (_ploymorphic_sites.fasta) as input:
+and the Gubbins polymorphic sites alignment as input:
 
 ```         
-snp-sites -c -o core.full.Gubbins.SNPs.aln core.full.Gubbins.aln
+snp-sites -c -o core.full.aln_ploymorphic_sites.fasta core.full.Gubbins.aln
 ```
 
 The number of constant sites was also calculated using snp-sites (v1):
@@ -382,11 +382,11 @@ psuedoalignments as input:
 run_gubbins.py --threads 10 full_alignments/group_14_snippy.fasta
 ```
 
-For each cluster gubbins filtered alignment (_ploymorphic_sites.fasta), a SNP alignment was
+For each cluster gubbins filtered alignment, a SNP alignment was
 generated:
 
 ```         
-snp-sites -c -o group_14_snippy_gubbins_SNPsites.fasta group_14_snippy_gubbins.fasta
+snp-sites -c -o group_14_snippy.fasta_ploymorphic_sites.fasta group_14_snippy_gubbins.fasta
 ```
 
 ### 5. Cluster ML and timed phylogenies
@@ -404,7 +404,7 @@ substitution model chosen based on the lowest BIC and the number of
 constant sites specified:
 
 ```         
-iqtree -s group_14_snippy_gubbins_SNPsites.fasta -B 1000 -T 60 -fconst 484048,535722,549723,494991
+iqtree -s group_14_snippy_gubbins.fasta -B 1000 -T 60 -fconst 484048,535722,549723,494991
 ```
 
 All ML phylogenies can be found in
