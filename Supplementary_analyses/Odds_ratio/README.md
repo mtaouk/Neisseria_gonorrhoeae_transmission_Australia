@@ -20,7 +20,9 @@ as input.
 The input spreadsheet lists persistence in a binary system where 1 is
 persistent and 0 is non persistent.
 
-For the phenotypic antimicrobial suseptibility profiles, each breakpoint has been assigned a value from 1 to 11 based on the antibiotic.
+For the phenotypic antimicrobial susceptibility profiles, each
+breakpoint has been assigned a value from 1 to 11 based on the
+antibiotic.
 
 ## R code:
 
@@ -34,13 +36,12 @@ fit2 <- geeglm(persistant ~ Sex+AgeGroup+Size+PEN+TET+CTRIX+CIPRO+AZITH, data = 
 summary(fit2) 
 
 broom::tidy(x = fit2, exp=T, conf.int = T)
-
 ```
 
 ## Results:
 
 ```         
- Coefficients:
+Coefficients:
                Estimate   Std.err   Wald Pr(>|W|)    
 (Intercept)    4.928596  1.617803  9.281  0.00232 ** 
 SexM          -1.275334  0.347233 13.490  0.00024 ***
@@ -68,7 +69,7 @@ Estimated Scale Parameters:
 Number of clusters:   31  Maximum cluster size: 709
 ```
 
-```
+```         
 # A tibble: 15 × 7
    term          estimate std.error statistic  p.value conf.low conf.high
    <chr>            <dbl>     <dbl>     <dbl>    <dbl>    <dbl>     <dbl>
@@ -94,15 +95,17 @@ persistence of clusters. The trends in phenotypic AMR patterns are
 consistent across the two models, however we chose to use the binary
 model as it reflects clinical breakpoints and is simpler to interpret.
 
-# GEE odds ratio model where intermediete isolates are grouped with resistant isolates
+# GEE odds ratio model where intermediate isolates are grouped with resistant isolates
 
-The following specified variables were included in the models: age group, sex, size of transmission cluster,
-phenotypic resistance to penicillin, phenotypic resistance to
-tetracycline, phenotypic resistance to ciprofloxacin, phenotypic
-resistance or decreased susceptibility to ceftriaxone and phenotypic
-resistance to azithromycin. For sex, an ‘unknown’ category was included
-to accommodate missing data, with all other categories having complete
-data. In this supplementary analysis isolates were grouped binarily as either phenotypically resistant/less susceptible/decreased susceptibility or susceptible 
+The following specified variables were included in the models: age
+group, sex, size of transmission cluster, phenotypic resistance to
+penicillin, phenotypic resistance to tetracycline, phenotypic resistance
+to ciprofloxacin, phenotypic resistance or decreased susceptibility to
+ceftriaxone and phenotypic resistance to azithromycin. For sex, an
+‘unknown’ category was included to accommodate missing data, with all
+other categories having complete data. In this supplementary analysis
+isolates were grouped binarily as either phenotypically resistant/less
+susceptible/decreased susceptibility or susceptible.
 
 The following R code was used with
 [stats_data2.csv](https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/Supplementary_analyses/Odds_ratio/stats_data2.csv)
@@ -121,7 +124,6 @@ fit3 <- geeglm(persistant ~ Sex+AgeGroup+Size+PEN+TET+CTRIX+CIPRO+AZITH, data = 
 summary(fit3) 
 
 broom::tidy(x = fit3, exp=T, conf.int = T)
-
 ```
 
 ## Results:
@@ -155,7 +157,7 @@ Estimated Scale Parameters:
 Number of clusters:   31  Maximum cluster size: 709 
 ```
 
-```
+```         
 # A tibble: 15 × 7
    term             estimate std.error statistic    p.value  conf.low conf.high
    <chr>               <dbl>     <dbl>     <dbl>      <dbl>     <dbl>     <dbl>
@@ -175,7 +177,7 @@ Number of clusters:   31  Maximum cluster size: 709
 14 CIPROSUS           5.32     1.01       2.73   0.0985      0.733       38.6  
 15 AZITHSUS         101.       0.960     23.1    0.00000150 15.4        665.   
 ```
-Here we see that sex, size of cluster and azithromycin suseptibility are still associated wtih persistence of clusters. Additionally, suseptibility to penicllin is now associated wtih persistent clusters. 
 
-
-
+Here we see that sex, size of cluster and azithromycin susceptibility
+are still associated with persistence of clusters. Additionally,
+susceptibility to penicllin is now associated with persistent clusters.
