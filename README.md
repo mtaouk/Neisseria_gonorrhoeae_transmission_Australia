@@ -429,24 +429,67 @@ All LSD timed phylogenies can be found in
 
 ### 6. Bayesian hierarchical model
 
-The timed phylogenetic trees for each cluster were input into a Bayesian hierarchical model. We applied a birth-death skyline process to all trees. Under this model, the epidemiological process follows a birth-death process, where branching events in a phylogenetic tree are informative about transmission, and the sampling process is directly modelled. The epidemiological parameters can change in a piecewise fashion over two intervals, with the interval time estimated as part of the model. Each transmission cluster had a fixed average infection duration of three months and shared a sampling proportion parameter, meaning that sampling intensity is a free parameter that is estimated here. However, each cluster was allowed to have independent effective reproductive numbers (Re) and epidemic origin times. The Re values were permitted to vary at a specific point in time, referred to as the "time slice," which represented a significant point of change in Re values. Although Re values were independent for each cluster, they were governed by a single Gamma prior distribution with two hyperparameters: shape and mean. The shape of this distribution influenced the skew, with smaller values indicating more variation in Re among clusters, and larger values suggesting similarity in Re values across clusters.
+The timed phylogenetic trees for each cluster were input into a Bayesian
+hierarchical model. We applied a birth-death skyline process to all
+trees. Under this model, the epidemiological process follows a
+birth-death process, where branching events in a phylogenetic tree are
+informative about transmission, and the sampling process is directly
+modelled. The epidemiological parameters can change in a piecewise
+fashion over two intervals, with the interval time estimated as part of
+the model. Each transmission cluster had a fixed average infection
+duration of three months and shared a sampling proportion parameter,
+meaning that sampling intensity is a free parameter that is estimated
+here. However, each cluster was allowed to have independent effective
+reproductive numbers (Re) and epidemic origin times. The Re values were
+permitted to vary at a specific point in time, referred to as the "time
+slice," which represented a significant point of change in Re values.
+Although Re values were independent for each cluster, they were governed
+by a single Gamma prior distribution with two hyperparameters: shape and
+mean. The shape of this distribution influenced the skew, with smaller
+values indicating more variation in Re among clusters, and larger values
+suggesting similarity in Re values across clusters.
 
-In our model, the Re values for clusters followed a Gamma distribution, where the shape parameter reflected heterogeneity in the spread among clusters. We maintained a fixed infection duration of three months in our hierarchical model, reflecting what we considered was the most plausible scenario. The birth-death model design resulted in different magnitudes of Re values, although the trends remained consistent.  We assumed a uniform prior distribution for all origin times, ranging from zero to six months. Before the first genome of each cluster was sampled, we set the sampling proportion to 0.0, and thereafter, it was modelled with a Beta(1, 30) prior distribution to capture our assumption that the sampling proportion was at most 10%. The hyperparameters of the Gamma distribution for Re values were assigned Gamma(10, 1) priors. Additionally, the time slice allowing Re value changes was assigned a uniform prior distribution between March 20 and March 30, 2020.
+In our model, the Re values for clusters followed a Gamma distribution,
+where the shape parameter reflected heterogeneity in the spread among
+clusters. We maintained a fixed infection duration of three months in
+our hierarchical model, reflecting what we considered was the most
+plausible scenario. The birth-death model design resulted in different
+magnitudes of Re values, although the trends remained consistent. We
+assumed a uniform prior distribution for all origin times, ranging from
+zero to six months. Before the first genome of each cluster was sampled,
+we set the sampling proportion to 0.0, and thereafter, it was modelled
+with a Beta(1, 30) prior distribution to capture our assumption that the
+sampling proportion was at most 10%. The hyperparameters of the Gamma
+distribution for Re values were assigned Gamma(10, 1) priors.
+Additionally, the time slice allowing Re value changes was assigned a
+uniform prior distribution between March 20 and March 30, 2020.
 
-We sampled the posterior distribution using Markov chain Monte Carlo, implemented in BEAST2.6, with a chain length of 109 steps and sampling every 105 steps. As the phylogenetic trees were fixed, there were no calculations of phylogenetic likelihood, making this analysis computationally more efficient compared to those involving both phylogenetic and phylodynamic likelihoods.
+We sampled the posterior distribution using Markov chain Monte Carlo,
+implemented in BEAST2.6, with a chain length of 109 steps and sampling
+every 105 steps. As the phylogenetic trees were fixed, there were no
+calculations of phylogenetic likelihood, making this analysis
+computationally more efficient compared to those involving both
+phylogenetic and phylodynamic likelihoods.
 
-The XML: 
+The XML:
 <a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/blob/main/Timed_trees/hierarchical_with_feast_D90days.xml">Timed_trees/hierarchical_with_feast_D90days.xml</a>
 
 # Supplementary Analyses
 
 In addition to methods used in the main manuscript and analyses,
 supplementary analyses are included in this GitHub. All supplementary
-analyses can be found in <a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/tree/main/Supplementary_analyses">Supplementary_analyses</a>. This folder includes two analyses:
+analyses can be found in
+<a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/tree/main/Supplementary_analyses">Supplementary_analyses</a>.
+This folder includes two analyses:
 
 -   <a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/tree/main/Supplementary_analyses/cgMLST_method">Supplementary_analyses/cgMLST_method</a>:
     Using cgMLST to define transmission groups in another publicly
     available international *N. gonorrheoae* dataset.
+
 -   <a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/tree/main/Supplementary_analyses/SNP_alignment">Supplementary_analyses/SNP_alignment</a>:
     Comparing the use of a traditional strict core alignment for
     phylogeny and clustering compared to cgMLST.
+
+-   <a href="https://github.com/mtaouk/Neisseria_gonorrhoeae_transmission_Australia/tree/main/Supplementary_analyses/Odds_ratio">Supplementary_analyses/Odds_ratio</a>:
+    GEE odds ratio model using continuous MIC variables and where
+    intermediate isolates are grouped with resistant isolates.
