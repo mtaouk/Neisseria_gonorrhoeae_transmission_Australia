@@ -91,9 +91,7 @@ Number of clusters:   31  Maximum cluster size: 709
 ```
 
 We see that sex and size of cluster are still associated with
-persistence of clusters. The trends in phenotypic AMR patterns are
-consistent across the two models, however we chose to use the binary
-model as it reflects clinical breakpoints and is simpler to interpret.
+persistence of clusters.
 
 # GEE odds ratio model where intermediate isolates are grouped with resistant isolates
 
@@ -181,3 +179,6 @@ Number of clusters:   31  Maximum cluster size: 709
 Here we see that sex, size of cluster and azithromycin susceptibility
 are still associated with persistence of clusters. Additionally,
 susceptibility to penicllin is now associated with persistent clusters.
+The trends in phenotypic AMR patterns are consistent across the two
+models, however we chose to use the binary model as it reflects clinical
+breakpoints and is simpler to interpret.
