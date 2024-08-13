@@ -386,7 +386,7 @@ For each cluster gubbins filtered alignment, a SNP alignment was
 generated:
 
 ```         
-snp-sites -c -o group_14_snippy.fasta_ploymorphic_sites.fasta group_14_snippy_gubbins.fasta
+snp-sites -c -o group_14_snippy.filtered_ploymorphic_sites.fasta group_14_snippy_gubbins.fasta
 ```
 
 ### 5. Cluster ML and timed phylogenies
