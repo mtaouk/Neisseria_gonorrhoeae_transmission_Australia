@@ -340,7 +340,7 @@ run_gubbins.py --threads 10 core.full.aln
 ```
 
 Following Gubbins, a SNP alignment was generated using snp-sites (v1)
-and the Gubbins filtered alignment as input:
+and the Gubbins filtered alignment (_ploymorphic_sites.fasta) as input:
 
 ```         
 snp-sites -c -o core.full.Gubbins.SNPs.aln core.full.Gubbins.aln
@@ -382,7 +382,7 @@ psuedoalignments as input:
 run_gubbins.py --threads 10 full_alignments/group_14_snippy.fasta
 ```
 
-For each cluster gubbins filtered alignment, a SNP alignment was
+For each cluster gubbins filtered alignment (_ploymorphic_sites.fasta), a SNP alignment was
 generated:
 
 ```         
